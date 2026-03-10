@@ -1,0 +1,4 @@
+repository "Isle of Tribulations/Isle of Tribulations@20066970555285@cloud"
+  path "/"
+    br "/main"
+    co "/main"
