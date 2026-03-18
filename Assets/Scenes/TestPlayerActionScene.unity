@@ -287,14 +287,41 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 353028564}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 050c3b84be76abb4da45bf4bfd0638d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 353028567}
+  playerVelocity: {x: 0, y: 0, z: 0}
+  groundedPlayer: 0
+  playerSpeed: 4
+  gravityValue: -20
+  activeChar: {fileID: 353028564}
+  moveHorizontal: 0
+  moveVertical: 0
   speed: 5
-  jumpForce: 5
-  gravity: -9.81
+  rotateSpeed: 4
+  jumpHeight: 1.5
+  isJumping: 0
+--- !u!114 &353028569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353028564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2419b238d243c4e9a0c116441429cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 353028567}
+  activeChar: {fileID: 353028564}
+  speed: 4
+  rotateSpeed: 120
+  jumpHeight: 2
+  gravityValue: -20
 --- !u!4 &871906206 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2530251679569251172, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
@@ -320,7 +347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1198753594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,6 +860,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 353028568}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 353028569}
   m_SourcePrefab: {fileID: 100100000, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
