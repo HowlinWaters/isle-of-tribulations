@@ -1,0 +1,51 @@
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    [SerializeField]CharacterController controller;
+    [SerializeField]Vector3 playerVelocity;
+    [SerializeField] bool groundedPlayer;
+    [SerializeField]float playerSpeed = 4;
+    [SerializeField]float gravityValue = -20;
+    [SerializeField]GameObject activeChar;
+    [SerializeField]float moveHorizontal;
+    [SerializeField]float moveVertical;
+    [SerializeField]float speed = 4;
+    [SerializeField]float rotateSpeed = 4;
+    [SerializeField]float jumpHeight = 1.2f;
+    [SerializeField]bool isJumping;
+   void Start(){
+
+        
+   }
+   void Update(){
+    groundedPlayer = controller.isGrounded;
+    if(groundedPlayer && playerVelocity.y < 0){
+        playerVelocity.y = 0f;
+    }
+    transform.Rotate(0, Input.GetAxis("Horizontal") * rotateSpeed, 0);
+    Vector3 forward = transform.TransformDirection(Vector3.forward);
+    float curSpeed = speed * Input.GetAxis("Vertical");
+    controller.SimpleMove(forward * curSpeed);
+    if(Input.GetKey(KeyCode.Space) && groundedPlayer){
+        isJumping = true;
+        activeChar.GetComponent<Animator>().Play("Jumping Up");
+        playerVelocity.y += 10;
+    }
+    playerVelocity.y += gravityValue * Time.deltaTime;
+    controller.Move(playerVelocity * Time.deltaTime);
+
+    if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)){
+        this.gameObject.GetComponent<CharacterController>().minMoveDistance = 0.001f;
+        if(isJumping == false){
+            activeChar.GetComponent<Animator>().Play("Running");
+        }
+    }
+    else{
+        this.gameObject.GetComponent<CharacterController>().minMoveDistance = 0.901f;
+         if(isJumping == false){
+            activeChar.GetComponent<Animator>().Play("Idle");
+        }
+    }
+   }
+}
