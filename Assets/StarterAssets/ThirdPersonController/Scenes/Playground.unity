@@ -1223,6 +1223,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerArchery
       objectReference: {fileID: 0}
+    - target: {fileID: 2605661404901624985, guid: 686a260ee55c54b42982fb02798d693a, type: 3}
+      propertyPath: MoveSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7256208028352829541, guid: 686a260ee55c54b42982fb02798d693a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

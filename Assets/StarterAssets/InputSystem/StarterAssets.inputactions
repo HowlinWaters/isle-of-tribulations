@@ -232,7 +232,7 @@
                 {
                     "name": "",
                     "id": "66d1235d-de47-4116-8016-6dfd80e44894",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

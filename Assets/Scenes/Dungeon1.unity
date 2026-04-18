@@ -566,6 +566,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fa68852bba4df14fb2e0ac172ae7fd6, type: 3}
+--- !u!4 &1056563804 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1334990855025610881, guid: 470dc8b3b4774d3438eff008312859b6, type: 3}
+  m_PrefabInstance: {fileID: 1548356823}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1336344737 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 170293045857996214, guid: fc0c52a51c2751141acd6b306666432f, type: 3}
@@ -803,6 +808,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9180570033682287331, guid: f0c3b738ae94c8b47ae6a933d700aa72, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 1056563804}
     - target: {fileID: 9180570033682287389, guid: f0c3b738ae94c8b47ae6a933d700aa72, type: 3}
       propertyPath: m_Name
       value: PlayerFollowCamera Variant (1)
