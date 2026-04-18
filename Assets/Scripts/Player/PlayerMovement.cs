@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     
     public float speed = 5f;
     public float jumpForce = 5f;
+    public float rotationSpeed;
 
     private CharacterController controller;
     private Vector3 move;
@@ -33,11 +34,16 @@ public class PlayerMovement : MonoBehaviour
     void Movement(){
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        move = transform.right * horizontal + transform.forward * vertical;
-        move = move.normalized;
+        // move = (transform.right * horizontal + transform.forward * vertical).normalized;
+        move = new Vector3(horizontal, 0f, vertical).normalized;
 
-        controller.Move(move * speed * Time.deltaTime);
-
+        controller.Move(speed * Time.deltaTime * move);
+        
+        if (move != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        }
     }
     void Jump(){
         if(Input.GetKeyDown(KeyCode.Space) && controller.transform.position.y < 4){

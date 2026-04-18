@@ -6,6 +6,7 @@ public class PlayMode : MonoBehaviour
     [SerializeField] private CharacterController controller;
     [SerializeField] private GameObject activeChar;
     [SerializeField] private float speed = 4f;
+    [SerializeField] private float rotationSpeed = 720f;
     [SerializeField] private float jumpHeight = 1.2f;
     [SerializeField] private float gravityValue = -20f;
 
@@ -37,7 +38,16 @@ public class PlayMode : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         
-        Vector3 move = (transform.right * horizontal + transform.forward * vertical) * speed;
+        // Vector3 move = ((transform.right * horizontal + transform.forward * vertical) * speed).normalized;
+        // Vector3 move = new Vector3(horizontal, 0f, vertical);
+        Vector3 move = Vector3.ClampMagnitude(new Vector3(horizontal, 0f, vertical), 1f) * speed;
+        
+
+        if (move != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && groundedPlayer)
         {

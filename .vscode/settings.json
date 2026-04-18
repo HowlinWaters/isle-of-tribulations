@@ -51,5 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "isle-of-tribulations.sln"
+    "dotnet.defaultSolution": "isle-of-tribulations.sln",
+    "dotnet.preferCSharpExtension": true
 }
