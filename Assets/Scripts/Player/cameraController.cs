@@ -6,10 +6,12 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+    [SerializeField] private GameObject player;
     [SerializeField] private Vector3 offset = new(0, 0, -15f);
     [SerializeField] private float transitionSpeed = 8f;
     [SerializeField] private Transform startRoom;
+
+    private PlayMode playMode;
     private bool isTransitioning = false;
 
     // Start is called before the first frame update
@@ -17,6 +19,7 @@ public class CameraController : MonoBehaviour
     {
         Debug.Log($"This camera: {gameObject.name}, Position: {transform.position}");
         BoxCollider startCollider = startRoom.GetComponent<BoxCollider>();
+        playMode = player.GetComponent<PlayMode>();
         offset = transform.position - startCollider.bounds.center;
     }
 
@@ -29,6 +32,8 @@ public class CameraController : MonoBehaviour
     IEnumerator SlideToRoom(Bounds roomBounds)
     {
         isTransitioning = true;
+        
+        playMode.LockMovement();
 
         Vector3 destination = new(
             roomBounds.center.x + offset.x,
@@ -59,12 +64,14 @@ public class CameraController : MonoBehaviour
         
         Vector3 playerEntry = Vector3.zero;
 
-        if (direction == Vector3.forward) playerEntry = new(player.position.x, player.position.y, roomBounds.min.z + 1f);
-        else if (direction == Vector3.back) playerEntry = new(player.position.x, player.position.y, roomBounds.max.z - 1f);
-        else if (direction == Vector3.right) playerEntry = new(roomBounds.min.x + 1f, player.position.y, player.position.z);
-        else if (direction == Vector3.left) playerEntry = new(roomBounds.max.x - 1f, player.position.y, player.position.z);
+        if (direction == Vector3.forward) playerEntry = new(player.transform.position.x, player.transform.position.y, roomBounds.min.z + 1f);
+        else if (direction == Vector3.back) playerEntry = new(player.transform.position.x, player.transform.position.y, roomBounds.max.z - 1f);
+        else if (direction == Vector3.right) playerEntry = new(roomBounds.min.x + 1f, player.transform.position.y, player.transform.position.z);
+        else if (direction == Vector3.left) playerEntry = new(roomBounds.max.x - 1f, player.transform.position.y, player.transform.position.z);
         
-        player.position = playerEntry;
+        player.transform.position = playerEntry;
+        
+        playMode.UnlockMovement();
 
         isTransitioning = false;
     }
