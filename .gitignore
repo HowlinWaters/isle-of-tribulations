@@ -102,4 +102,4 @@ InitTestScene*.unity*
 *.sln
 
 # VSCode directory
-/.vscode/
+.vscode/
