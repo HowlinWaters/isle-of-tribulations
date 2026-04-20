@@ -11,16 +11,17 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float transitionSpeed = 8f;
     [SerializeField] private Transform startRoom;
 
-    private PlayMode playMode;
+    private PlayerMovement playerMovement;
+    private Pause status;
     private bool isTransitioning = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log($"This camera: {gameObject.name}, Position: {transform.position}");
         BoxCollider startCollider = startRoom.GetComponent<BoxCollider>();
-        playMode = player.GetComponent<PlayMode>();
+        playerMovement = player.GetComponent<PlayerMovement>();
         offset = transform.position - startCollider.bounds.center;
+        status = GetComponent<Pause>();
     }
 
     public void ShiftToRoom(Bounds roomBounds)
@@ -33,7 +34,8 @@ public class CameraController : MonoBehaviour
     {
         isTransitioning = true;
         
-        playMode.LockMovement();
+        // playerMovement.LockMovement();
+        status.PauseGame();
 
         Vector3 destination = new(
             roomBounds.center.x + offset.x,
@@ -56,7 +58,7 @@ public class CameraController : MonoBehaviour
 
         while (Vector3.Distance(transform.position, destination) > 0.1f)
         {
-            transform.position = Vector3.Lerp(transform.position, destination, transitionSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, destination, transitionSpeed * Time.unscaledDeltaTime);
             yield return null;
         }
         
@@ -71,7 +73,8 @@ public class CameraController : MonoBehaviour
         
         player.transform.position = playerEntry;
         
-        playMode.UnlockMovement();
+        // playerMovement.UnlockMovement();
+        status.ResumeGame();
 
         isTransitioning = false;
     }
