@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(AudioSource))]
@@ -27,6 +28,8 @@ public class PlayMode : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = activeChar.GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        Debug.Log($"{audioSource} acquired");
+        Debug.Log($"{audioSource.clip} is loaded");
     }
 
     void Update()
@@ -43,9 +46,6 @@ public class PlayMode : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         
-        
-        // Vector3 move = ((transform.right * horizontal + transform.forward * vertical) * speed).normalized;
-        // Vector3 move = new Vector3(horizontal, 0f, vertical);
         Vector3 move = Vector3.ClampMagnitude(new Vector3(horizontal, 0f, vertical), 1f) * speed;
         PlayFootsteps();
 
@@ -54,7 +54,7 @@ public class PlayMode : MonoBehaviour
             Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
-
+        
         if (Input.GetKeyDown(KeyCode.Space) && groundedPlayer) Jump();
         if (Input.GetKeyDown(KeyCode.Return) && !isAttacking) Attack();
 
@@ -70,6 +70,7 @@ public class PlayMode : MonoBehaviour
 
     void Attack()
     {
+        LockMovement();
         animator.SetTrigger("Attack");
         isAttacking = true;
         StartCoroutine(ResetAttack());
@@ -109,18 +110,17 @@ public class PlayMode : MonoBehaviour
             canMove = false;
             audioSource.Stop();
         }
-        Debug.Log("$Locking movement");
     }
     
     public void UnlockMovement()
     {
         if (!canMove) canMove = true;
-        Debug.Log("$Unlocking movement");
     }
 
     IEnumerator ResetAttack()
     {
         yield return new WaitForSeconds(0.61f);
         isAttacking = false;
+        UnlockMovement();
     }
 }
