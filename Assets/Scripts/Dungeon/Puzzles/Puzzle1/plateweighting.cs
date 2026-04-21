@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class plateweighting : MonoBehaviour
+public class PlateWeighting : MonoBehaviour
 {
     [SerializeField] private int requiredWeight = 3;
     [SerializeField] private DoorUpward Door;
