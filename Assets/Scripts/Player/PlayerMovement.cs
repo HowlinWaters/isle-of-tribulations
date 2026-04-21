@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight = 1.2f;
     [SerializeField] private float gravityValue = -20f;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private Transform cameraTransform;
 
     private Vector3 playerVelocity;
     private Vector3 startingPos;
@@ -29,6 +30,11 @@ public class PlayerMovement : MonoBehaviour
         animator = activeChar.GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         startingPos = transform.position;
+
+        if (cameraTransform == null && Camera.main != null)
+        {
+            cameraTransform = Camera.main.transform;
+        }
     }
 
     void Update()
@@ -44,18 +50,35 @@ public class PlayerMovement : MonoBehaviour
 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        
-        Vector3 move = Vector3.ClampMagnitude(new Vector3(horizontal, 0f, vertical), 1f) * speed;
-        PlayFootsteps();
+
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
+
+        camForward.y = 0f;
+        camRight.y = 0f;
+
+        camForward.Normalize();
+        camRight.Normalize();
+
+        Vector3 moveDirection = camForward * vertical + camRight * horizontal;
+        moveDirection = Vector3.ClampMagnitude(moveDirection, 1f);
+
+        Vector3 move = moveDirection * speed;
+
+        PlayFootsteps(moveDirection);
 
         Debug.Log($"H: {horizontal} V: {vertical} canMove: {canMove}");
 
-        if (move != Vector3.zero)
+        if (moveDirection != Vector3.zero)
         {
-            Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                toRotation,
+                rotationSpeed * Time.deltaTime
+            );
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Space) && groundedPlayer) Jump();
         if (Input.GetKeyDown(KeyCode.Return) && !isAttacking) Attack();
 
@@ -65,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
         finalMove.y = playerVelocity.y;
         controller.Move(finalMove * Time.deltaTime);
 
-        animator.SetFloat("Speed", move.magnitude);
+        animator.SetFloat("Speed", moveDirection.magnitude);
         animator.SetBool("IsGrounded", groundedPlayer);
     }
 
@@ -82,11 +105,10 @@ public class PlayerMovement : MonoBehaviour
         playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
         animator.SetTrigger("Jump");
     }
-    
-    void PlayFootsteps()
+
+    void PlayFootsteps(Vector3 moveDirection)
     {
-        bool isRunning = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) 
-        || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
+        bool isRunning = moveDirection != Vector3.zero && groundedPlayer;
 
         if (isRunning)
         {
@@ -104,15 +126,16 @@ public class PlayerMovement : MonoBehaviour
             audioSource.Stop();
         }
     }
-    
+
     public void LockMovement()
     {
-        if (canMove) {
+        if (canMove)
+        {
             canMove = false;
             audioSource.Stop();
         }
     }
-    
+
     public void UnlockMovement()
     {
         if (!canMove) canMove = true;
