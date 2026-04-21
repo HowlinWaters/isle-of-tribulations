@@ -18,15 +18,10 @@ public class SkeletonBehavior : MonoBehaviour
     [SerializeField] private float rotationSpeed = 720f;
     [SerializeField] private float roamRange = 5f;
     [SerializeField] private float directionInterval = 1.0f;
-    private bool isActive;
     private Animator animator;
     private Plane[] planes;
     private new Renderer renderer;
-    /* private Vector3 startingPos;
-    private Vector3 roamDest; */
     private Vector3 currentDirection;
-    /* private float roamTimer = 0f;
-    private readonly float roamInterval = 2f; */
     private float directionTimer = 0f;
 
 
@@ -39,7 +34,6 @@ public class SkeletonBehavior : MonoBehaviour
         /* startingPos = transform.position;
         roamDest = transform.position; */
         renderer = activeChar.GetComponentInChildren<Renderer>();
-        isActive = false;
         PickNewDirection();
     }
 

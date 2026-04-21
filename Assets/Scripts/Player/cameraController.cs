@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Pause))]
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
@@ -13,7 +14,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float rotateStep = 90f;
     [SerializeField] private float rotateSpeed = 5f;
 
-    private PlayerMovement playerMovement;
+    // private PlayerMovement playerMovement;
     private Pause status;
     private bool isTransitioning = false;
 
@@ -25,7 +26,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         BoxCollider startCollider = startRoom.GetComponent<BoxCollider>();
-        playerMovement = player.GetComponent<PlayerMovement>();
+        // playerMovement = player.GetComponent<PlayerMovement>();
         offset = transform.position - startCollider.bounds.center;
         status = GetComponent<Pause>();
 
