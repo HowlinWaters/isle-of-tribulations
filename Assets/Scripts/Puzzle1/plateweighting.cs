@@ -5,21 +5,22 @@ using UnityEngine;
 public class plateweighting : MonoBehaviour
 {
     [SerializeField] private int requiredWeight = 3;
-    [SerializeField] private DoorUpward door1;
+    [SerializeField] private DoorUpward Door;
 
     private List<WeightObject> objonplate = new List<WeightObject>();
     private int curWeight = 0;
     private bool puzzelsolved = false;
 
-    private void onTriggerEnter(Collider c)
+    private void OnTriggerEnter(Collider c)
     {
         WeightObject wb = c.GetComponent<WeightObject>();
         if(wb != null && !objonplate.Contains(wb)){
+            Debug.Log("Something entered plate: " + c.name);
             objonplate.Add(wb);
             calculateWeight();
         }
     }
-    private void onTriggerExit(Collider c)
+    private void OnTriggerExit(Collider c)
     {
         WeightObject wb = c.GetComponent<WeightObject>();
         if(wb != null && objonplate.Contains(wb)){
@@ -40,8 +41,17 @@ public class plateweighting : MonoBehaviour
             puzzelsolved = true;
             Debug.Log("Puzzle solved. Door opened");
 
-            if(door1 != null){
-                door1.OpenDoor();
+            if(Door != null){
+                Door.OpenDoor();
+            }
+        }
+        else if (puzzelsolved && curWeight < requiredWeight)
+        {
+            puzzelsolved = false;
+
+            if (Door != null)
+            {
+                Door.CloseDoor();
             }
         }
     }

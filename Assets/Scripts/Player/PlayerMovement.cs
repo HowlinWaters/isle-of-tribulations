@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = Vector3.ClampMagnitude(new Vector3(horizontal, 0f, vertical), 1f) * speed;
         PlayFootsteps();
 
+        Debug.Log($"H: {horizontal} V: {vertical} canMove: {canMove}");
+
         if (move != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(move, Vector3.up);
