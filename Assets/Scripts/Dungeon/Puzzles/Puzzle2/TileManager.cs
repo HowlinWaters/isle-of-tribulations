@@ -7,7 +7,7 @@ public class TileManager : MonoBehaviour
     public int[] order = { 1, 2, 3, 4, 5 };
     private int stepcount = 0;
 
-    [SerializeField] private DoorUpward Door;
+    [SerializeField] private DoorUpward1 Door;
 
     public void TilePressed(int id)
     {

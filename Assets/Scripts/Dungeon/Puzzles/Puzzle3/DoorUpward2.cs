@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorUpward1 : MonoBehaviour
+public class DoorUpward2 : MonoBehaviour
 {
     [SerializeField] private Vector3 openOffset = new Vector3(0f, 4f, 0f);
     [SerializeField] private float openSpeed = 2f;

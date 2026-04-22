@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnlockGate1 : MonoBehaviour
+public class UnlockGate2 : MonoBehaviour
 {
-    [SerializeField] private int requiredkey = 2;
+    [SerializeField] private int requiredkey = 3;
     private void OnTriggerEnter(Collider c){
         if(!c.CompareTag("Player")) return;
 
