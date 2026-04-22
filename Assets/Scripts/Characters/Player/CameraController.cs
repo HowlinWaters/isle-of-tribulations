@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private Vector3 offset = new(0, 0, -10f);
+    [SerializeField] private Vector3 offset;
     [SerializeField] private float transitionSpeed = 8f;
     [SerializeField] private Transform startRoom;
 
@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
     private float targetYaw = 0f;
 
     private Vector3 currentRoomCenter;
+    private Quaternion initialRotation;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class CameraController : MonoBehaviour
         status = GetComponent<Pause>();
 
         currentRoomCenter = startCollider.bounds.center;
+        initialRotation = transform.rotation;
 
         currentYaw = 0f;
         targetYaw = 0f;
@@ -51,14 +53,9 @@ public class CameraController : MonoBehaviour
 
         // Smooth rotation
         currentYaw = Mathf.LerpAngle(currentYaw, targetYaw, rotateSpeed * Time.deltaTime);
-
         Quaternion rotation = Quaternion.Euler(0f, currentYaw, 0f);
-
         Vector3 rotatedOffset = rotation * offset;
-
-        transform.position = currentRoomCenter + rotatedOffset;
-
-        transform.LookAt(currentRoomCenter);
+        transform.SetPositionAndRotation(currentRoomCenter + rotatedOffset, rotation * initialRotation);
     }
 
     public void ShiftToRoom(Bounds roomBounds)
@@ -75,7 +72,9 @@ public class CameraController : MonoBehaviour
 
         currentRoomCenter = roomBounds.center;
 
-        Vector3 destination = currentRoomCenter + offset;
+        Quaternion rotation = Quaternion.Euler(0f, currentYaw, 0f);
+        Vector3 rotatedOffset = rotation * offset;
+        Vector3 destination = currentRoomCenter + rotatedOffset;
 
         Vector3 rawDirection = destination - transform.position;
         Vector3 direction;
@@ -100,10 +99,6 @@ public class CameraController : MonoBehaviour
         }
 
         transform.position = destination;
-
-        // Reset rotation when entering new room
-        currentYaw = 0f;
-        targetYaw = 0f;
 
         Vector3 playerEntry = Vector3.zero;
 
