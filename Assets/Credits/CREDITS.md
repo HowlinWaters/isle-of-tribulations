@@ -3,3 +3,7 @@ Indoor Footsteps.wav - WakuWakuWakuWaku ([text](https://freesound.org/people/Wak
 
 # Shader Sources
 Simple Water Shader URP - IgniteCoders ([text](https://assetstore.unity.com/packages/2d/textures-materials/water/simple-water-shader-urp-191449))
+
+# Model & Animation Sources
+Jackie - Mixamo ([text](https://www.mixamo.com/#/?page=2&type=Character))
+Stylized Free Skeleton - ThunderForgeStudio ([text](https://assetstore.unity.com/packages/3d/characters/creatures/stylized-free-skeleton-298650))

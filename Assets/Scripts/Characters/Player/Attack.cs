@@ -14,13 +14,13 @@ public class Attack : MonoBehaviour
     
     private float cooldown = 0f;
     private HashSet<GameObject> enemiesHit = new HashSet<GameObject>();
-    private Collider weaponCollider;
+    // private Collider weaponCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log($"Player is holding {weapon}");
-        weaponCollider = weapon.GetComponent<Collider>();
+        // weaponCollider = weapon.GetComponent<Collider>();
     }
     
     void Update()
