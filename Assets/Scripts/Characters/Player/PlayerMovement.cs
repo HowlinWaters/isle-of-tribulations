@@ -5,23 +5,35 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Character")]
     [SerializeField] private CharacterController controller;
     [SerializeField] private GameObject activeChar;
+
+    [Header("Attributes")]
     [SerializeField] private float speed = 4f;
     [SerializeField] private float rotationSpeed = 720f;
     [SerializeField] private float jumpHeight = 1.2f;
     [SerializeField] private float gravityValue = -20f;
+    [SerializeField] private Vector3 startingPosition;
+    // X: 2.559774
+    // Y: 1.723569
+    // Z: -11.34251
+    
+    [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
+    
+    [Header("Camera")]
     [SerializeField] private Transform cameraTransform;
 
     private Vector3 playerVelocity;
-    private Vector3 startingPos;
     private bool groundedPlayer;
     private Animator animator;
 
     private bool canMove = true;
     private float footstepTimer = 0f;
     private readonly float footstepInterval = 0.3f;
+    
+    [Header("Attack")]
     public bool isAttacking;
 
     void Start()
@@ -29,7 +41,11 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = activeChar.GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        startingPos = transform.position;
+        activeChar.transform.position = new Vector3(
+            startingPosition.x,
+            startingPosition.y,
+            startingPosition.z
+        );
 
         if (cameraTransform == null && Camera.main != null)
         {
@@ -50,7 +66,6 @@ public class PlayerMovement : MonoBehaviour
         
         Move();
 
-        if (Input.GetKeyDown(KeyCode.Space) && groundedPlayer) Jump();
         if (Input.GetKeyDown(KeyCode.Return) && !isAttacking) Attack();
     }
 
@@ -102,12 +117,6 @@ public class PlayerMovement : MonoBehaviour
         animator.SetTrigger("Attack");
         isAttacking = true;
         StartCoroutine(ResetAttack());
-    }
-
-    void Jump()
-    {
-        playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityValue);
-        animator.SetTrigger("Jump");
     }
 
     void PlayFootsteps(Vector3 moveDirection)

@@ -118,6 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cc973045aa39e4f8a31abcd1a9a097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
+  player: {fileID: 0}
+  cooldownDuration: 0.5
+  knockbackForce: 8
+  knockbackDuration: 1.5
 --- !u!1001 &1052832199278653671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -543,11 +548,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1535688858753384655}
   activeChar: {fileID: 170293045857996214}
-  speed: 4
+  speed: 3
   rotationSpeed: 720
   jumpHeight: 2
   gravityValue: -20
+  startingPosition: {x: 2.559774, y: 1.723569, z: -11.34251}
   audioSource: {fileID: 5609265712756449860}
+  cameraTransform: {fileID: 0}
+  isAttacking: 0
 --- !u!82 &5609265712756449860
 AudioSource:
   m_ObjectHideFlags: 0
