@@ -10,7 +10,11 @@ public class Attack : MonoBehaviour
     [SerializeField] internal PlayerMovement player;
     
     [Header("Cooldown")]
-    [SerializeField] private float cooldownDuration = 4.0f;
+    [SerializeField] private float cooldownDuration = 0.5f;
+    
+    [Header("Knockback")]
+    [SerializeField] private float knockbackForce = 8f;
+    [SerializeField] private float knockbackDuration = 1.5f;
     
     private float cooldown = 0f;
     private HashSet<GameObject> enemiesHit = new HashSet<GameObject>();
@@ -41,6 +45,10 @@ public class Attack : MonoBehaviour
             Debug.Log($"{other.gameObject.name} is hit!");
             enemiesHit.Add(other.gameObject);
             skeleton.TakeDamage(1);
+
+            // Enemy takes knockback
+            Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
+            skeleton.ApplyKnockback(knockbackDirection, knockbackForce, knockbackDuration);
             cooldown = cooldownDuration;
         }
     }

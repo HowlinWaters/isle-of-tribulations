@@ -25,6 +25,7 @@ public class SkeletonBehavior : MonoBehaviour
     private float invincible = 0;
     private readonly float invincibleCD = 2f;
     private bool canAttack;
+    private bool canMove;
 
 
     // Start is called before the first frame update
@@ -36,6 +37,7 @@ public class SkeletonBehavior : MonoBehaviour
         startingPos = transform.position;
         renderer = activeChar.GetComponentInChildren<Renderer>();
         canAttack = false;
+        canMove = true;
         
         float roomSizeX = roomBounds.bounds.size.x;
         float roomSizeZ = roomBounds.bounds.size.z;
@@ -47,16 +49,20 @@ public class SkeletonBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        planes = GeometryUtility.CalculateFrustumPlanes(cam);
-        if (GeometryUtility.TestPlanesAABB(planes, renderer.bounds))
-            Move();
-        if (invincible > 0)
+        if (hp <= 0) Die();
+        else
         {
-            invincible -= Time.deltaTime;
-        }
-        if (invincible <= 0)
-        {
-            canAttack = true;
+            planes = GeometryUtility.CalculateFrustumPlanes(cam);
+            if (GeometryUtility.TestPlanesAABB(planes, renderer.bounds))
+                Move();
+            if (invincible > 0)
+            {
+                invincible -= Time.deltaTime;
+            }
+            if (invincible <= 0)
+            {
+                canAttack = true;
+            }
         }
     }
     
@@ -69,8 +75,9 @@ public class SkeletonBehavior : MonoBehaviour
     
     void Move()
     {
-        directionTimer -= Time.deltaTime;
+        if (!canMove) return;
         if (directionTimer <= 0f) PickNewDirection();
+        directionTimer -= Time.deltaTime;
 
         float padding = 1f;
         Vector3 nextPosition = transform.position + speed * Time.deltaTime * currentDirection.normalized;
@@ -80,7 +87,7 @@ public class SkeletonBehavior : MonoBehaviour
             Mathf.Clamp(nextPosition.z, roomBounds.bounds.min.z + padding, roomBounds.bounds.max.z - padding)
         );
 
-        // Boundary hit detected via clamp
+        /* // Boundary hit detected via clamp
         if (clampedPosition != nextPosition)
         {
             currentDirection = -currentDirection;
@@ -94,13 +101,30 @@ public class SkeletonBehavior : MonoBehaviour
         {
             currentDirection = -currentDirection;
             directionTimer = directionInterval;
-        }
+        } */
+
+        controller.Move(clampedPosition - transform.position);
 
         if (currentDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(currentDirection, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
+    }
+    
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (!hit.gameObject.CompareTag("Player"))
+        {
+            currentDirection = -currentDirection;
+            directionTimer = directionInterval;
+        }
+    }
+    
+    void Die()
+    {
+        animator.SetTrigger("Death");
+        Debug.Log($"{gameObject.name} is dead!");
     }
     
     public void TakeDamage(int hpLost)
@@ -110,5 +134,23 @@ public class SkeletonBehavior : MonoBehaviour
         Debug.Log($"{gameObject.name} has {hp} hits left!");
         invincible = invincibleCD;
         canAttack = false;
+    }
+
+    public void ApplyKnockback(Vector3 direction, float force, float duration)
+    {
+        StartCoroutine(KnockbackCoroutine(direction, force, duration));
+    }
+    
+    IEnumerator KnockbackCoroutine(Vector3 direction, float force, float duration)
+    {
+        float elapsed = 0f;
+        canMove = false;
+        while (elapsed < duration)
+        {
+            controller.Move(force * duration * direction);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        canMove = true;
     }
 }
