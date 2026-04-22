@@ -47,9 +47,17 @@ public class PlayerMovement : MonoBehaviour
         {
             playerVelocity.y = -2f;
         }
+        
+        Move();
 
+        if (Input.GetKeyDown(KeyCode.Space) && groundedPlayer) Jump();
+        if (Input.GetKeyDown(KeyCode.Return) && !isAttacking) Attack();
+    }
+
+    void Move()
+    {
         float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float vertical = Input.GetAxis("Vertical"); 
 
         Vector3 camForward = cameraTransform.forward;
         Vector3 camRight = cameraTransform.right;
@@ -64,7 +72,14 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = Vector3.ClampMagnitude(moveDirection, 1f);
 
         Vector3 move = moveDirection * speed;
+        playerVelocity.y += gravityValue * Time.deltaTime;
 
+        Vector3 finalMove = move;
+        finalMove.y = playerVelocity.y;
+        controller.Move(finalMove * Time.deltaTime);
+
+        animator.SetFloat("Speed", moveDirection.magnitude);
+        animator.SetBool("IsGrounded", groundedPlayer);
         PlayFootsteps(moveDirection);
 
         // Debug.Log($"H: {horizontal} V: {vertical} canMove: {canMove}");
@@ -79,18 +94,6 @@ public class PlayerMovement : MonoBehaviour
                 rotationSpeed * Time.deltaTime
             );
         }
-
-        if (Input.GetKeyDown(KeyCode.Space) && groundedPlayer) Jump();
-        if (Input.GetKeyDown(KeyCode.Return) && !isAttacking) Attack();
-
-        playerVelocity.y += gravityValue * Time.deltaTime;
-
-        Vector3 finalMove = move;
-        finalMove.y = playerVelocity.y;
-        controller.Move(finalMove * Time.deltaTime);
-
-        animator.SetFloat("Speed", moveDirection.magnitude);
-        animator.SetBool("IsGrounded", groundedPlayer);
     }
 
     void Attack()
