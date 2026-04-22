@@ -6,9 +6,21 @@ public class TileTrigger : MonoBehaviour
 {
     public SequenceTile st;
 
-    private void OnTriggerEnter(Collider c){
-        if(c.CompareTag("Player")){
-            st.Pressed();
+    private void OnTriggerEnter(Collider c)
+    {
+        if (c.CompareTag("Player"))
+        {
+            Debug.Log("Player entered trigger: " + gameObject.name);
+
+            if (st != null)
+            {
+                st.Pressed();
+                Debug.Log("It is pressed");
+            }
+            else
+            {
+                Debug.Log("SequenceTile reference is NULL on " + gameObject.name);
+            }
         }
     }
 }

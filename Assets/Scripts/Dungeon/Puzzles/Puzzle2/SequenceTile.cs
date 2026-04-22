@@ -5,11 +5,19 @@ using UnityEngine;
 public class SequenceTile : MonoBehaviour
 {
     public int tileid;
-    private TileManager tm;
-    void Start(){
-        tm = FindObjectOfType<TileManager>();
-    }
-    public void Pressed(){
-        tm.TilePressed(tileid);
+    [SerializeField] private TileManager tm;
+
+    public void Pressed()
+    {
+        Debug.Log("SequenceTile pressed, tileid = " + tileid);
+
+        if (tm != null)
+        {
+            tm.TilePressed(tileid);
+        }
+        else
+        {
+            Debug.Log("TileManager is NULL");
+        }
     }
 }
