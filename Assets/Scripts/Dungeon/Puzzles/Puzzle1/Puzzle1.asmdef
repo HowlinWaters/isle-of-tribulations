@@ -1,0 +1,16 @@
+{
+    "name": "Puzzle1",
+    "rootNamespace": "",
+    "references": [
+        "Dungeon"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
