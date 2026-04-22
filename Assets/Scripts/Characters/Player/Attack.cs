@@ -7,14 +7,14 @@ public class Attack : MonoBehaviour
 {
     [Header("Player")]
     [SerializeField] private GameObject weapon;
-    [SerializeField] internal PlayerMovement player;
+    [SerializeField] internal Player player;
     
     [Header("Cooldown")]
     [SerializeField] private float cooldownDuration = 0.5f;
     
     [Header("Knockback")]
     [SerializeField] private float knockbackForce = 8f;
-    [SerializeField] private float knockbackDuration = 1.5f;
+    [SerializeField] private float knockbackDuration = 0.1f;
     
     private float cooldown = 0f;
     private HashSet<GameObject> enemiesHit = new HashSet<GameObject>();
@@ -37,7 +37,7 @@ public class Attack : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        SkeletonBehavior skeleton = other.GetComponent<SkeletonBehavior>();
+        Skeleton skeleton = other.GetComponent<Skeleton>();
         if (other.CompareTag("Enemy") && player.isAttacking && 
         !enemiesHit.Contains(other.gameObject) && cooldown <= 0f)
         {

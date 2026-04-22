@@ -4,16 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class SkeletonBehavior : MonoBehaviour
+public class Skeleton : MonoBehaviour
 {
     
+    [Header("Character")]
     [SerializeField] private CharacterController controller;
-    [SerializeField] private Camera cam;
     [SerializeField] private GameObject activeChar;
-    [SerializeField] private BoxCollider roomBounds;
+    
+    [Header("Attributes")]
     [SerializeField] private float speed = 4f;
     [SerializeField] private float rotationSpeed = 720f;
-    // [SerializeField] private float directionInterval = 1.0f;
+    [SerializeField] private float knockbackForce = 5f;
+    [SerializeField] private float knockbackDuration = 0.1f;
+
+    [Header("Camera")]
+    [SerializeField] private Camera cam;
+    
+    [Header("Boundaries")]
+    [SerializeField] private BoxCollider roomBounds;
     private float directionInterval;
     private Animator animator;
     private Vector3 startingPos;
@@ -24,7 +32,8 @@ public class SkeletonBehavior : MonoBehaviour
     private int hp = 3;
     private float invincible = 0;
     private readonly float invincibleCD = 2f;
-    private bool canAttack;
+    private float cooldown;
+    private readonly float cooldownDuration = 2f;
     private bool canMove;
 
 
@@ -36,7 +45,6 @@ public class SkeletonBehavior : MonoBehaviour
         cam = Camera.main;
         startingPos = transform.position;
         renderer = activeChar.GetComponentInChildren<Renderer>();
-        canAttack = false;
         canMove = true;
         
         float roomSizeX = roomBounds.bounds.size.x;
@@ -55,14 +63,8 @@ public class SkeletonBehavior : MonoBehaviour
             planes = GeometryUtility.CalculateFrustumPlanes(cam);
             if (GeometryUtility.TestPlanesAABB(planes, renderer.bounds))
                 Move();
-            if (invincible > 0)
-            {
-                invincible -= Time.deltaTime;
-            }
-            if (invincible <= 0)
-            {
-                canAttack = true;
-            }
+            if (invincible > 0) invincible -= Time.deltaTime;
+            if (cooldown > 0) cooldown -= Time.deltaTime;
         }
     }
     
@@ -87,23 +89,15 @@ public class SkeletonBehavior : MonoBehaviour
             Mathf.Clamp(nextPosition.z, roomBounds.bounds.min.z + padding, roomBounds.bounds.max.z - padding)
         );
 
-        /* // Boundary hit detected via clamp
+        // Boundary hit detected via clamp
         if (clampedPosition != nextPosition)
         {
             currentDirection = -currentDirection;
             directionTimer = directionInterval;
         }
 
-        CollisionFlags flags = controller.Move(clampedPosition - transform.position);
-
-        // Wall collision detected via physics
-        if (!flags.Equals(CollisionFlags.None))
-        {
-            currentDirection = -currentDirection;
-            directionTimer = directionInterval;
-        } */
-
         controller.Move(clampedPosition - transform.position);
+        animator.SetFloat("Speed", speed);
 
         if (currentDirection != Vector3.zero)
         {
@@ -114,17 +108,41 @@ public class SkeletonBehavior : MonoBehaviour
     
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (!hit.gameObject.CompareTag("Player"))
+        if (hit.gameObject.layer == LayerMask.NameToLayer("RoomBounds"))
         {
             currentDirection = -currentDirection;
             directionTimer = directionInterval;
+        }
+
+        if (hit.gameObject.CompareTag("Player") && cooldown <= 0f)
+        {
+            Player player = hit.gameObject.GetComponent<Player>();
+            player.TakeDamage(1);
+            
+            Vector3 knockbackDirection = (player.transform.position - transform.position).normalized;
+            player.ApplyKnockback(knockbackDirection, knockbackForce, knockbackDuration);
+            cooldown = cooldownDuration;
         }
     }
     
     void Die()
     {
         animator.SetTrigger("Death");
+        animator.SetFloat("Speed", 0);
         Debug.Log($"{gameObject.name} is dead!");
+    }
+    
+    void LockMovement()
+    {
+        if (canMove)
+        {
+            canMove = false;
+        }
+    }
+
+    void UnlockMovement()
+    {
+        if (!canMove) canMove = true;
     }
     
     public void TakeDamage(int hpLost)
@@ -133,7 +151,6 @@ public class SkeletonBehavior : MonoBehaviour
         hp -= hpLost;
         Debug.Log($"{gameObject.name} has {hp} hits left!");
         invincible = invincibleCD;
-        canAttack = false;
     }
 
     public void ApplyKnockback(Vector3 direction, float force, float duration)
@@ -144,13 +161,14 @@ public class SkeletonBehavior : MonoBehaviour
     IEnumerator KnockbackCoroutine(Vector3 direction, float force, float duration)
     {
         float elapsed = 0f;
-        canMove = false;
+        LockMovement();
+        animator.SetFloat("Speed", 0);
         while (elapsed < duration)
         {
-            controller.Move(force * duration * direction);
+            controller.Move(force * Time.deltaTime * direction);
             elapsed += Time.deltaTime;
             yield return null;
         }
-        canMove = true;
+        UnlockMovement();
     }
 }

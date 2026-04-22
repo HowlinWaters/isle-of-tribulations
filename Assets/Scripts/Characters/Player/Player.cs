@@ -3,8 +3,10 @@ using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(AudioSource))]
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
+    private static WaitForSeconds _waitForSeconds0_61 = new WaitForSeconds(0.61f);
+    private static WaitForSeconds _waitForSeconds0_1 = new WaitForSeconds(0.1f);
     [Header("Character")]
     [SerializeField] private CharacterController controller;
     [SerializeField] private GameObject activeChar;
@@ -12,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] private float speed = 4f;
     [SerializeField] private float rotationSpeed = 720f;
-    [SerializeField] private float jumpHeight = 1.2f;
     [SerializeField] private float gravityValue = -20f;
+    [SerializeField] private int hp = 5;
     [SerializeField] private Vector3 startingPosition;
     // X: 2.559774
     // Y: 1.723569
@@ -26,10 +28,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
 
     private Vector3 playerVelocity;
-    private bool groundedPlayer;
     private Animator animator;
+    private new SkinnedMeshRenderer renderer;
 
     private bool canMove = true;
+    private bool groundedPlayer;
+    private float invincible;
+    private readonly float invincibleCD = 2f;
     private float footstepTimer = 0f;
     private readonly float footstepInterval = 0.3f;
     
@@ -46,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
             startingPosition.y,
             startingPosition.z
         );
+        renderer = activeChar.GetComponentInChildren<SkinnedMeshRenderer>();
 
         if (cameraTransform == null && Camera.main != null)
         {
@@ -55,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!canMove) return;
+        if (invincible > 0) invincible -= Time.deltaTime;
 
         groundedPlayer = controller.isGrounded;
 
@@ -64,13 +70,15 @@ public class PlayerMovement : MonoBehaviour
             playerVelocity.y = -2f;
         }
         
-        Move();
+        if (canMove) Move();
 
-        if (Input.GetKeyDown(KeyCode.Return) && !isAttacking) Attack();
+        if (Input.GetKeyDown(KeyCode.Return) && canMove && !isAttacking) Attack();
     }
 
     void Move()
     {
+        if (!canMove) return;
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical"); 
 
@@ -97,7 +105,6 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("IsGrounded", groundedPlayer);
         PlayFootsteps(moveDirection);
 
-        // Debug.Log($"H: {horizontal} V: {vertical} canMove: {canMove}");
 
         // Turn character to moving direction after stopping
         if (moveDirection != Vector3.zero)
@@ -110,6 +117,22 @@ public class PlayerMovement : MonoBehaviour
             );
         }
     }
+    
+    void LockMovement()
+    {
+        if (canMove)
+        {
+            canMove = false;
+            audioSource.Stop();
+        }
+        Debug.Log("Resting...");
+    }
+
+    void UnlockMovement()
+    {
+        if (!canMove) canMove = true;
+        Debug.Log("Let's go!");
+    }
 
     void Attack()
     {
@@ -117,6 +140,12 @@ public class PlayerMovement : MonoBehaviour
         animator.SetTrigger("Attack");
         isAttacking = true;
         StartCoroutine(ResetAttack());
+    }
+    IEnumerator ResetAttack()
+    {
+        yield return _waitForSeconds0_61;
+        isAttacking = false;
+        UnlockMovement();
     }
 
     void PlayFootsteps(Vector3 moveDirection)
@@ -139,25 +168,45 @@ public class PlayerMovement : MonoBehaviour
             audioSource.Stop();
         }
     }
-
-    public void LockMovement()
+    
+    public void TakeDamage(int hpLost)
     {
-        if (canMove)
+        hp -= hpLost;
+        Debug.Log($"Ouch! You have {hp} hits remaining!");
+        invincible = invincibleCD;
+        float hurtDuration = invincibleCD / 0.25f;
+        StartCoroutine(BlinkCoroutine(hurtDuration));
+    }
+    IEnumerator BlinkCoroutine(float duration)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
         {
-            canMove = false;
-            audioSource.Stop();
+            renderer.enabled = !renderer.enabled;
+            elapsed += Time.deltaTime;
+            yield return _waitForSeconds0_1;
         }
+        renderer.enabled = true;
     }
 
-    public void UnlockMovement()
+    public void ApplyKnockback(Vector3 direction, float force, float duration)
     {
-        if (!canMove) canMove = true;
+        Debug.Log("EEEER!!! (Knockback applied)");
+        StartCoroutine(KnockbackCoroutine(direction, force, duration));
     }
-
-    IEnumerator ResetAttack()
+    IEnumerator KnockbackCoroutine(Vector3 direction, float force, float duration)
     {
-        yield return new WaitForSeconds(0.61f);
-        isAttacking = false;
+        float elapsed = 0f;
+        LockMovement();
+        while (elapsed < duration)
+        {
+            Debug.Log($"Position: {activeChar.transform.position}");
+            controller.Move(force * Time.deltaTime * direction);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
         UnlockMovement();
     }
+
+    
 }
