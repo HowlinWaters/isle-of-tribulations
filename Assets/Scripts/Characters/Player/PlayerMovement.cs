@@ -18,10 +18,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 startingPos;
     private bool groundedPlayer;
     private Animator animator;
-    private bool isAttacking;
+
     private bool canMove = true;
     private float footstepTimer = 0f;
     private readonly float footstepInterval = 0.3f;
+    public bool isAttacking;
 
     void Start()
     {
@@ -66,8 +67,9 @@ public class PlayerMovement : MonoBehaviour
 
         PlayFootsteps(moveDirection);
 
-        Debug.Log($"H: {horizontal} V: {vertical} canMove: {canMove}");
+        // Debug.Log($"H: {horizontal} V: {vertical} canMove: {canMove}");
 
+        // Turn character to moving direction after stopping
         if (moveDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);

@@ -13,13 +13,18 @@ public class SkeletonBehavior : MonoBehaviour
     [SerializeField] private BoxCollider roomBounds;
     [SerializeField] private float speed = 4f;
     [SerializeField] private float rotationSpeed = 720f;
-    [SerializeField] private float roamRange = 5f;
-    [SerializeField] private float directionInterval = 1.0f;
+    // [SerializeField] private float directionInterval = 1.0f;
+    private float directionInterval;
     private Animator animator;
+    private Vector3 startingPos;
     private Plane[] planes;
     private new Renderer renderer;
     private Vector3 currentDirection;
     private float directionTimer = 0f;
+    private int hp = 3;
+    private float invincible = 0;
+    private readonly float invincibleCD = 2f;
+    private bool canAttack;
 
 
     // Start is called before the first frame update
@@ -28,9 +33,14 @@ public class SkeletonBehavior : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = activeChar.GetComponent<Animator>();
         cam = Camera.main;
-        /* startingPos = transform.position;
-        roamDest = transform.position; */
+        startingPos = transform.position;
         renderer = activeChar.GetComponentInChildren<Renderer>();
+        canAttack = false;
+        
+        float roomSizeX = roomBounds.bounds.size.x;
+        float roomSizeZ = roomBounds.bounds.size.z;
+        float minRoomSize = Mathf.Min(roomSizeX, roomSizeZ);
+        directionInterval = minRoomSize / speed;
         PickNewDirection();
     }
 
@@ -40,6 +50,14 @@ public class SkeletonBehavior : MonoBehaviour
         planes = GeometryUtility.CalculateFrustumPlanes(cam);
         if (GeometryUtility.TestPlanesAABB(planes, renderer.bounds))
             Move();
+        if (invincible > 0)
+        {
+            invincible -= Time.deltaTime;
+        }
+        if (invincible <= 0)
+        {
+            canAttack = true;
+        }
     }
     
     void PickNewDirection()
@@ -83,5 +101,14 @@ public class SkeletonBehavior : MonoBehaviour
             Quaternion toRotation = Quaternion.LookRotation(currentDirection, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
+    }
+    
+    public void TakeDamage(int hpLost)
+    {
+        if (hp == 0) Debug.Log($"{gameObject.name} is dead");
+        hp -= hpLost;
+        Debug.Log($"{gameObject.name} has {hp} hits left!");
+        invincible = invincibleCD;
+        canAttack = false;
     }
 }
