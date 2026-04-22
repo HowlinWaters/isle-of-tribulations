@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(AudioSource))]

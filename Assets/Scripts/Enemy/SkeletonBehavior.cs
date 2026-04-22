@@ -1,16 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.AI;
 
 [RequireComponent(typeof(CharacterController))]
 public class SkeletonBehavior : MonoBehaviour
 {
     
     [SerializeField] private CharacterController controller;
-    [SerializeField] private NavMeshAgent navAgent;
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject activeChar;
     [SerializeField] private BoxCollider roomBounds;
