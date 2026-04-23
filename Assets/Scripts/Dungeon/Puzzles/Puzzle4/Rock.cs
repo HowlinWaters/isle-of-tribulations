@@ -58,6 +58,7 @@ public class Rock : MonoBehaviour
 
         if (breakVFX != null)
         {
+            Debug.Log("Break() called on: " + gameObject.name); 
             Instantiate(breakVFX, transform.position + Vector3.up * 0.5f, Quaternion.identity);
         }
 

@@ -2,12 +2,6 @@ using UnityEngine;
 
 public class RockBreaker : MonoBehaviour
 {
-    [SerializeField] private float range = 2f;
-    [SerializeField] private LayerMask RockLayer;
-    [SerializeField] private float rayHeight = 1f;
-
-    private Rock currentTarget;
-    private int enterStage = 0;
 
     void Update()
     {
@@ -16,6 +10,8 @@ public class RockBreaker : MonoBehaviour
             HandleEnter();
         }
     }
+    private Rock currentTarget;
+    private int enterStage = 0;
 
     void HandleEnter()
     {
@@ -35,23 +31,31 @@ public class RockBreaker : MonoBehaviour
 
     void SelectTarget()
     {
-        RaycastHit hit;
-        Vector3 origin = transform.position + Vector3.up * rayHeight;
-        Vector3 dir = transform.forward;
-        dir.y = 0f;
-        dir.Normalize();
+         Rock[] allRocks = FindObjectsOfType<Rock>();
+        Rock closest = null;
+        float closestDist = 5f;
 
-        if (Physics.Raycast(origin, dir, out hit, range, RockLayer))
+        foreach (Rock rock in allRocks)
         {
-            Rock r = hit.collider.GetComponent<Rock>();
-
-            if (r != null)
+            float dist = Vector3.Distance(transform.position, rock.transform.position);
+            Debug.Log("Rock: " + rock.name + " distance: " + dist);
+            if (dist < closestDist)
             {
-                currentTarget = r;
-                enterStage = 1;
-                currentTarget.SetStage(1);
-                Debug.Log("Stage 1: Block selected");
+                closestDist = dist;
+                closest = rock;
             }
+        }
+
+        if (closest != null)
+        {
+            currentTarget = closest;
+            enterStage = 1;
+            currentTarget.SetStage(1);
+            Debug.Log("Stage 1: Rock selected - " + closest.name);
+        }
+        else
+        {
+            Debug.Log("No rock found within 5 units");
         }
     }
 
@@ -72,10 +76,12 @@ public class RockBreaker : MonoBehaviour
     {
         if (currentTarget == null)
         {
+            Debug.Log("currentTarget is NULL!");
             ResetInteraction();
             return;
         }
 
+        Debug.Log("Calling Break on: " + currentTarget.name);
         Vector3 dir = transform.forward;
         dir.y = 0f;
         dir = new Vector3(Mathf.Round(dir.x), 0f, Mathf.Round(dir.z)).normalized;
@@ -83,13 +89,13 @@ public class RockBreaker : MonoBehaviour
         currentTarget.SetStage(0);
         currentTarget.Break(dir);
 
-        Debug.Log("Stage 3: Chain break executed");
+        Debug.Log("Stage 3: Rock broken!");
         ResetInteraction();
     }
 
     void ResetInteraction()
     {
-        if (currentTarget != null)
+         if (currentTarget != null)
         {
             currentTarget.SetStage(0);
         }

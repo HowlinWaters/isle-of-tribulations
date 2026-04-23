@@ -845,6 +845,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31244d59516fa734fb92b49caee71b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 10
+  RockLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  rayHeight: 0.3
 --- !u!4 &654939717059843852 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}

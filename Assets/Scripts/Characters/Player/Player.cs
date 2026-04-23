@@ -72,7 +72,15 @@ public class Player : MonoBehaviour
         
         if (canMove) Move();
 
-        if (Input.GetKeyDown(KeyCode.Return) && canMove && !isAttacking) Attack();
+        if (Input.GetKeyDown(KeyCode.Return) && canMove && !isAttacking)
+        {
+            Collider[] hits = Physics.OverlapSphere(transform.position, 5f, LayerMask.GetMask("RockLayer"));
+        
+            if (hits.Length == 0)
+            {
+                Attack(); // no rocks nearby, attack normally
+            }
+        }
     }
 
     void Move()
