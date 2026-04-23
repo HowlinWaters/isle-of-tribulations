@@ -699,6 +699,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1020015256894589342, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1680610651152380737, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1189,6 +1193,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8906412223710705062, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168599245867057530, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
