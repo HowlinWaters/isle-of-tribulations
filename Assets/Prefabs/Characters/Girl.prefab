@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 7083390762975891708}
   - component: {fileID: 4830807367469589466}
   - component: {fileID: 3786007474261433888}
-  - component: {fileID: 5467012222160273657}
   m_Layer: 7
   m_Name: sword
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,34 +94,17 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5467012222160273657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2620584721876135908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10cc973045aa39e4f8a31abcd1a9a097, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
-  player: {fileID: 0}
-  cooldownDuration: 0.5
-  knockbackForce: 8
-  knockbackDuration: 1.5
 --- !u!1 &6325025429275175228
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,15 +170,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.75
+      value: 2.559774
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.75
+      value: 1.723569
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.75
+      value: -11.34251
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -511,6 +493,9 @@ PrefabInstance:
       addedObject: {fileID: 4820400864829321895}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4295304060114884340}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 3227160665128174971}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
       insertIndex: -1
@@ -520,13 +505,13 @@ PrefabInstance:
       addedObject: {fileID: 2398342086801684590}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4528942925544859735}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 5609265712756449860}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 971087703987529787}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4528942925544859735}
   m_SourcePrefab: {fileID: 100100000, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
 --- !u!1 &170293045857996214 stripped
 GameObject:
@@ -602,6 +587,28 @@ MonoBehaviour:
   audioSource: {fileID: 5609265712756449860}
   cameraTransform: {fileID: 0}
   isAttacking: 0
+--- !u!114 &4295304060114884340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170293045857996214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10cc973045aa39e4f8a31abcd1a9a097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 2620584721876135908}
+  player: {fileID: 4820400864829321895}
+  attackPoint: {fileID: 2814614646214427173}
+  attackSize: {x: 1, y: 1, z: 1}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  cooldownDuration: 5
+  knockbackForce: 3
+  knockbackDuration: 0.1
 --- !u!114 &3227160665128174971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,6 +646,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71f996bc23b45cc4b8db5840cd046f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4528942925544859735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170293045857996214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31244d59516fa734fb92b49caee71b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!82 &5609265712756449860
@@ -833,23 +852,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4528942925544859735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170293045857996214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31244d59516fa734fb92b49caee71b5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 10
-  RockLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  rayHeight: 0.3
 --- !u!4 &654939717059843852 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}

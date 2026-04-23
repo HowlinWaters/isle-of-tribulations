@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -129,7 +128,6 @@ public class Skeleton : MonoBehaviour
     {
         animator.SetTrigger("Death");
         animator.SetFloat("Speed", 0);
-        Debug.Log($"{gameObject.name} is dead!");
     }
     
     void LockMovement()
@@ -147,9 +145,9 @@ public class Skeleton : MonoBehaviour
     
     public void TakeDamage(int hpLost)
     {
-        if (hp == 0) Debug.Log($"{gameObject.name} is dead");
         hp -= hpLost;
-        Debug.Log($"{gameObject.name} has {hp} hits left!");
+        if (hp <= 0) Debug.Log($"{gameObject.name} is dead!");
+        else Debug.Log($"{gameObject.name} has {hp} hits left!");
         invincible = invincibleCD;
     }
 
@@ -165,9 +163,10 @@ public class Skeleton : MonoBehaviour
         animator.SetFloat("Speed", 0);
         while (elapsed < duration)
         {
-            controller.Move(force * Time.deltaTime * direction);
-            elapsed += Time.deltaTime;
-            yield return null;
+            float currentForce = Mathf.Lerp(force, 0f, elapsed / duration);
+            controller.Move(currentForce * Time.fixedDeltaTime * direction);
+            elapsed += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
         }
         UnlockMovement();
     }

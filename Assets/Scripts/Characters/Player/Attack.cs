@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.LowLevel;
 
 public class Attack : MonoBehaviour
 {
@@ -9,53 +8,49 @@ public class Attack : MonoBehaviour
     [SerializeField] private GameObject weapon;
     [SerializeField] internal Player player;
     
-    [Header("Cooldown")]
-    [SerializeField] private float cooldownDuration = 0.5f;
+    [Header("Attributes")]
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private Vector3 attackSize = new Vector3(1f, 1f, 1f);
+    [SerializeField] private LayerMask enemyLayer;
     
     [Header("Knockback")]
-    [SerializeField] private float knockbackForce = 8f;
-    [SerializeField] private float knockbackDuration = 0.1f;
+    [SerializeField] private float knockbackForce = 80f;
+    [SerializeField] private float knockbackDuration = 0.15f;
     
-    private float cooldown = 0f;
     private HashSet<GameObject> enemiesHit = new HashSet<GameObject>();
-    // private Collider weaponCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log($"Player is holding {weapon}");
-        // weaponCollider = weapon.GetComponent<Collider>();
+        attackPoint = weapon.GetComponent<Transform>();
+        Debug.Log($"The target for {weapon.name} is {enemyLayer}");
+    }
+
+    // Function is called by an animation event.
+    void HitRegister()
+    {
+        Collider[] hits = Physics.OverlapBox(attackPoint.position, attackSize, transform.rotation, enemyLayer);
+        foreach (Collider hit in hits)
+        {
+            if (!enemiesHit.Contains(hit.gameObject))
+            {
+                // Enemy gets hurt
+                enemiesHit.Add(hit.gameObject);
+                Skeleton skeleton = hit.GetComponent<Skeleton>();
+                Debug.Log($"{skeleton.gameObject.name} is hit!");
+                skeleton.TakeDamage(1);
+                
+                // Enemy takes knockback
+                Vector3 knockbackDirection = (skeleton.transform.position - attackPoint.position).normalized;
+                skeleton.ApplyKnockback(knockbackDirection, knockbackForce, knockbackDuration);
+            }
+        }
     }
     
-    void Update()
+    // Function is called by an animation event.
+    void ResetHit()
     {
-        if (cooldown > 0)
-        {
-            cooldown -= Time.deltaTime;
-        }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        Skeleton skeleton = other.GetComponent<Skeleton>();
-        if (other.CompareTag("Enemy") && player.isAttacking && 
-        !enemiesHit.Contains(other.gameObject) && cooldown <= 0f)
-        {
-            // Enemy gets hurt
-            Debug.Log($"{other.gameObject.name} is hit!");
-            enemiesHit.Add(other.gameObject);
-            skeleton.TakeDamage(1);
-
-            // Enemy takes knockback
-            Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
-            skeleton.ApplyKnockback(knockbackDirection, knockbackForce, knockbackDuration);
-            cooldown = cooldownDuration;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-            enemiesHit.Remove(other.gameObject);
+        enemiesHit.Clear();
     }
 }

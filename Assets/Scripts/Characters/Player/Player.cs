@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     private bool canMove = true;
     private bool groundedPlayer;
     private float invincible;
-    private readonly float invincibleCD = 2f;
+    private readonly float invincibleCD = 3f;
     private float footstepTimer = 0f;
     private readonly float footstepInterval = 0.3f;
     
@@ -182,8 +182,8 @@ public class Player : MonoBehaviour
         hp -= hpLost;
         Debug.Log($"Ouch! You have {hp} hits remaining!");
         invincible = invincibleCD;
-        float hurtDuration = invincibleCD / 0.25f;
-        StartCoroutine(BlinkCoroutine(hurtDuration));
+        float hurtDuration = invincible;
+        if (invincible > 0) StartCoroutine(BlinkCoroutine(hurtDuration));
     }
     IEnumerator BlinkCoroutine(float duration)
     {
@@ -192,8 +192,9 @@ public class Player : MonoBehaviour
         {
             renderer.enabled = !renderer.enabled;
             elapsed += Time.deltaTime;
-            yield return _waitForSeconds0_1;
+            yield return null;
         }
+        Debug.Log($"Recovered!");
         renderer.enabled = true;
     }
 
