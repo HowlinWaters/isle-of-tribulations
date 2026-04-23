@@ -1105,7 +1105,7 @@ GameObject:
   - component: {fileID: 2938689695414139458}
   - component: {fileID: 4895639729653409496}
   m_Layer: 0
-  m_Name: tile5
+  m_Name: Tile5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1211,7 +1211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileid: 4
-  tm: {fileID: 0}
+  tm: {fileID: 859688145919405753}
 --- !u!1 &1677204150759913595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1906,7 +1906,7 @@ GameObject:
   - component: {fileID: 4129880900545078838}
   - component: {fileID: 8902465866330791277}
   m_Layer: 0
-  m_Name: tile3
+  m_Name: Tile3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2012,7 +2012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileid: 5
-  tm: {fileID: 0}
+  tm: {fileID: 859688145919405753}
 --- !u!1 &3263584246031184192
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,6 +2302,7 @@ GameObject:
   - component: {fileID: 2208157919457465474}
   - component: {fileID: 5584655957072203074}
   - component: {fileID: 3138005592236204226}
+  - component: {fileID: 3800828656769789723}
   m_Layer: 0
   m_Name: Door2
   m_TagString: Untagged
@@ -2395,6 +2396,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3800828656769789723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512192653722651042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32af362348c799745aeccabfcb65ff4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openOffset: {x: 0, y: 4, z: 0}
+  openSpeed: 2
 --- !u!1 &3643998806624317239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2552,7 +2567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5488440101775921845}
   m_Layer: 0
-  m_Name: Puzzle 2
+  m_Name: Puzzle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3196,7 +3211,7 @@ GameObject:
   - component: {fileID: 6245614572960098045}
   - component: {fileID: 4342379022160283507}
   m_Layer: 0
-  m_Name: tile4
+  m_Name: Tile4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3302,7 +3317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileid: 2
-  tm: {fileID: 0}
+  tm: {fileID: 859688145919405753}
 --- !u!1 &5073214949187228693
 GameObject:
   m_ObjectHideFlags: 0
@@ -3804,7 +3819,7 @@ GameObject:
   - component: {fileID: 2057246317879832023}
   - component: {fileID: 1497523136185260231}
   m_Layer: 0
-  m_Name: tile1
+  m_Name: Tile1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3910,7 +3925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileid: 1
-  tm: {fileID: 0}
+  tm: {fileID: 859688145919405753}
 --- !u!1 &5954512940359708927
 GameObject:
   m_ObjectHideFlags: 0
@@ -4118,7 +4133,7 @@ GameObject:
   - component: {fileID: 1759557526298973970}
   - component: {fileID: 3085705696146332982}
   m_Layer: 0
-  m_Name: tile2
+  m_Name: Tile2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4224,7 +4239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileid: 3
-  tm: {fileID: 0}
+  tm: {fileID: 859688145919405753}
 --- !u!1 &6143888739013312171
 GameObject:
   m_ObjectHideFlags: 0
