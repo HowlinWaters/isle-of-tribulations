@@ -7,3 +7,4 @@ Simple Water Shader URP - IgniteCoders ([text](https://assetstore.unity.com/pack
 # Model & Animation Sources
 Jackie - Mixamo ([text](https://www.mixamo.com/#/?page=2&type=Character))
 Stylized Free Skeleton - ThunderForgeStudio ([text](https://assetstore.unity.com/packages/3d/characters/creatures/stylized-free-skeleton-298650))
+HQ Rocks Pack - Next Level 3D ([text](https://assetstore.unity.com/packages/3d/props/exterior/hq-rocks-pack-66895#content))
