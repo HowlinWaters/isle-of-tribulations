@@ -1104,8 +1104,9 @@ GameObject:
   - component: {fileID: 6618633849848526557}
   - component: {fileID: 2938689695414139458}
   - component: {fileID: 4895639729653409496}
+  - component: {fileID: 4089429567737220289}
   m_Layer: 0
-  m_Name: tile5
+  m_Name: Tile5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1192,7 +1193,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1210,8 +1211,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cb480cee6268e4fa4f01ebbb1528c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tm: {fileID: 859688145919405753}
   tileid: 4
-  tm: {fileID: 0}
+--- !u!114 &4089429567737220289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591842196824363503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73e80acda954e8f479f543fc08ae5e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  st: {fileID: 4895639729653409496}
 --- !u!1 &1677204150759913595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1655,7 +1669,7 @@ GameObject:
   - component: {fileID: 3065108859690790670}
   - component: {fileID: 3163275382569256972}
   m_Layer: 0
-  m_Name: redbox
+  m_Name: RedBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1905,8 +1919,9 @@ GameObject:
   - component: {fileID: 8748663514498934690}
   - component: {fileID: 4129880900545078838}
   - component: {fileID: 8902465866330791277}
+  - component: {fileID: 8286806434759137058}
   m_Layer: 0
-  m_Name: tile3
+  m_Name: Tile3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1993,7 +2008,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2011,8 +2026,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cb480cee6268e4fa4f01ebbb1528c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tm: {fileID: 859688145919405753}
   tileid: 5
-  tm: {fileID: 0}
+--- !u!114 &8286806434759137058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2840012905016382640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73e80acda954e8f479f543fc08ae5e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  st: {fileID: 8902465866330791277}
 --- !u!1 &3263584246031184192
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,6 +2330,7 @@ GameObject:
   - component: {fileID: 2208157919457465474}
   - component: {fileID: 5584655957072203074}
   - component: {fileID: 3138005592236204226}
+  - component: {fileID: 3800828656769789723}
   m_Layer: 0
   m_Name: Door2
   m_TagString: Untagged
@@ -2395,6 +2424,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3800828656769789723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512192653722651042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32af362348c799745aeccabfcb65ff4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openOffset: {x: 0, y: 4, z: 0}
+  openSpeed: 2
 --- !u!1 &3643998806624317239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,7 +2453,7 @@ GameObject:
   - component: {fileID: 5225983889140273978}
   - component: {fileID: 4431376447231170986}
   m_Layer: 0
-  m_Name: bluebox
+  m_Name: BlueBox
   m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2552,7 +2595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5488440101775921845}
   m_Layer: 0
-  m_Name: Puzzle 2
+  m_Name: Puzzle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3278,8 +3321,9 @@ GameObject:
   - component: {fileID: 2338135403940340247}
   - component: {fileID: 6245614572960098045}
   - component: {fileID: 4342379022160283507}
+  - component: {fileID: 8178290949545560261}
   m_Layer: 0
-  m_Name: tile4
+  m_Name: Tile4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3366,7 +3410,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -3384,8 +3428,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cb480cee6268e4fa4f01ebbb1528c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tm: {fileID: 859688145919405753}
   tileid: 2
-  tm: {fileID: 0}
+--- !u!114 &8178290949545560261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4769847951848873169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73e80acda954e8f479f543fc08ae5e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  st: {fileID: 4342379022160283507}
 --- !u!1 &5073214949187228693
 GameObject:
   m_ObjectHideFlags: 0
@@ -3647,7 +3704,7 @@ GameObject:
   - component: {fileID: 8196455996067512298}
   - component: {fileID: 1735833521857711270}
   m_Layer: 0
-  m_Name: blueplate
+  m_Name: BluePlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3767,7 +3824,7 @@ GameObject:
   - component: {fileID: 182503150873183479}
   - component: {fileID: 4197197617829510884}
   m_Layer: 0
-  m_Name: redplate
+  m_Name: RedPlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4006,8 +4063,9 @@ GameObject:
   - component: {fileID: 8405707880385373225}
   - component: {fileID: 2057246317879832023}
   - component: {fileID: 1497523136185260231}
+  - component: {fileID: 7225731738828559005}
   m_Layer: 0
-  m_Name: tile1
+  m_Name: Tile1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4094,7 +4152,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4112,8 +4170,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cb480cee6268e4fa4f01ebbb1528c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tm: {fileID: 859688145919405753}
   tileid: 1
-  tm: {fileID: 0}
+--- !u!114 &7225731738828559005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860150279981084932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73e80acda954e8f479f543fc08ae5e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  st: {fileID: 1497523136185260231}
 --- !u!1 &5954512940359708927
 GameObject:
   m_ObjectHideFlags: 0
@@ -4320,8 +4391,9 @@ GameObject:
   - component: {fileID: 313358584927645496}
   - component: {fileID: 1759557526298973970}
   - component: {fileID: 3085705696146332982}
+  - component: {fileID: 4769980489068195470}
   m_Layer: 0
-  m_Name: tile2
+  m_Name: Tile2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4408,7 +4480,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4426,8 +4498,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cb480cee6268e4fa4f01ebbb1528c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tm: {fileID: 859688145919405753}
   tileid: 3
-  tm: {fileID: 0}
+--- !u!114 &4769980489068195470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6132355698619731947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73e80acda954e8f479f543fc08ae5e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  st: {fileID: 3085705696146332982}
 --- !u!1 &6143888739013312171
 GameObject:
   m_ObjectHideFlags: 0
@@ -5080,9 +5165,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plates:
-  - {fileID: 0}
-  - {fileID: 0}
-  Door2: {fileID: 0}
+  - {fileID: 1735833521857711270}
+  - {fileID: 4197197617829510884}
+  Door2: {fileID: 3800828656769789723}
 --- !u!1 &7174962261499197993
 GameObject:
   m_ObjectHideFlags: 0
