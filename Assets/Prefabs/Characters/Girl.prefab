@@ -606,9 +606,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
-  cooldownDuration: 5
-  knockbackForce: 3
-  knockbackDuration: 0.1
+  knockbackForce: 80
+  knockbackDuration: 0.15
 --- !u!114 &3227160665128174971
 MonoBehaviour:
   m_ObjectHideFlags: 0

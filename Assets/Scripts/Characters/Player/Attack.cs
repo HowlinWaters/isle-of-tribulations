@@ -14,8 +14,8 @@ public class Attack : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     
     [Header("Knockback")]
-    [SerializeField] private float knockbackForce = 80f;
-    [SerializeField] private float knockbackDuration = 0.15f;
+    [SerializeField] private float knockbackForce;
+    [SerializeField] private float knockbackDuration;
     
     private HashSet<GameObject> enemiesHit = new HashSet<GameObject>();
 
@@ -24,7 +24,7 @@ public class Attack : MonoBehaviour
     {
         Debug.Log($"Player is holding {weapon}");
         attackPoint = weapon.GetComponent<Transform>();
-        Debug.Log($"The target for {weapon.name} is {enemyLayer}");
+        enemyLayer = LayerMask.GetMask("Enemy");
     }
 
     // Function is called by an animation event.

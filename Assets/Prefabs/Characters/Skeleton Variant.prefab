@@ -72,6 +72,14 @@ PrefabInstance:
       propertyPath: rotationSpeed
       value: 720
       objectReference: {fileID: 0}
+    - target: {fileID: 9104240990463397055, guid: 89008cdb4c8db9744af89c90c307681e, type: 3}
+      propertyPath: knockbackForce
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104240990463397055, guid: 89008cdb4c8db9744af89c90c307681e, type: 3}
+      propertyPath: knockbackDuration
+      value: 0.15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

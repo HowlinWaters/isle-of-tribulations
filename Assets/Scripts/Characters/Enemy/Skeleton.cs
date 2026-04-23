@@ -26,6 +26,7 @@ public class Skeleton : MonoBehaviour
     private Vector3 startingPos;
     private Plane[] planes;
     private new Renderer renderer;
+    private Color originalColor;
     private Vector3 currentDirection;
     private float directionTimer = 0f;
     private int hp = 3;
@@ -44,6 +45,7 @@ public class Skeleton : MonoBehaviour
         cam = Camera.main;
         startingPos = transform.position;
         renderer = activeChar.GetComponentInChildren<Renderer>();
+        originalColor = renderer.material.color;
         canMove = true;
         
         float roomSizeX = roomBounds.bounds.size.x;
@@ -76,8 +78,7 @@ public class Skeleton : MonoBehaviour
     
     void Move()
     {
-        if (!canMove) return;
-        if (directionTimer <= 0f) PickNewDirection();
+        if (directionTimer <= 0f && canMove) PickNewDirection();
         directionTimer -= Time.deltaTime;
 
         float padding = 1f;
@@ -95,7 +96,7 @@ public class Skeleton : MonoBehaviour
             directionTimer = directionInterval;
         }
 
-        controller.Move(clampedPosition - transform.position);
+        if (canMove) controller.Move(clampedPosition - transform.position);
         animator.SetFloat("Speed", speed);
 
         if (currentDirection != Vector3.zero)
