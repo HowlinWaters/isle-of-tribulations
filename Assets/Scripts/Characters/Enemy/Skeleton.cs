@@ -27,7 +27,6 @@ public class Skeleton : MonoBehaviour
     private new Renderer renderer;
     private Color originalColor;
     private Vector3 currentDirection;
-    private Vector3 lastPosition;
     private float directionTimer = 0f;
     private float directionInterval;
     private int hp = 3;
@@ -35,8 +34,8 @@ public class Skeleton : MonoBehaviour
     private readonly float invincibleCD = 2f;
     private float cooldown;
     private readonly float cooldownDuration = 2f;
-    private float stuckTimer = 0f;
     private bool canMove;
+    private bool isDamaged;
 
 
     // Start is called before the first frame update
@@ -68,21 +67,8 @@ public class Skeleton : MonoBehaviour
                 Move();
             if (invincible > 0) invincible -= Time.deltaTime;
             if (cooldown > 0) cooldown -= Time.deltaTime;
-            /* if (Vector3.Distance(transform.position, lastPosition) < 0.1f)
-            {
-                stuckTimer += Time.deltaTime;
-                if (stuckTimer > 0.5f)
-                {
-                    transform.position = startingPos;
-                    // PickNewDirection();
-                    stuckTimer = 0f;
-                }
-            }
-            else
-            {
-                stuckTimer = 0f;
-            }
-            lastPosition = transform.position; */
+            if (isDamaged) renderer.material.color = Color.red;
+            if (!isDamaged) renderer.material.color = originalColor;
         }
     }
     
@@ -124,7 +110,7 @@ public class Skeleton : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
     }
-    
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("RoomBounds"))
@@ -136,13 +122,6 @@ public class Skeleton : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        /* if (hit.gameObject.layer == LayerMask.NameToLayer("RoomBounds"))
-        {
-            transform.position += hit.normal * 0.1f;
-            currentDirection = hit.normal;
-            directionTimer = directionInterval;
-        } */
-
         if (hit.gameObject.CompareTag("Player") && cooldown <= 0f)
         {
             Player player = hit.gameObject.GetComponent<Player>();
@@ -176,9 +155,11 @@ public class Skeleton : MonoBehaviour
     public void TakeDamage(int hpLost)
     {
         hp -= hpLost;
+        isDamaged = true;
         if (hp <= 0) Debug.Log($"{gameObject.name} is dead!");
         else Debug.Log($"{gameObject.name} has {hp} hits left!");
         invincible = invincibleCD;
+        isDamaged = false;
     }
 
     public void ApplyKnockback(Vector3 direction, float force, float duration)

@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed = 4f;
     [SerializeField] private float rotationSpeed = 720f;
     [SerializeField] private float gravityValue = -20f;
-    [SerializeField] private int hp = 5;
+    public int hp = 5;
     [SerializeField] private Vector3 startingPosition;
     public bool isAttacking;
     // X: 2.559774
