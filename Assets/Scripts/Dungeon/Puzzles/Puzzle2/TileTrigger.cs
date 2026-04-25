@@ -5,6 +5,7 @@ using UnityEngine;
 public class TileTrigger : MonoBehaviour
 {
     public SequenceTile st;
+    [SerializeField] private AudioSource stepontile;
 
     private void OnTriggerEnter(Collider c)
     {
@@ -15,6 +16,9 @@ public class TileTrigger : MonoBehaviour
             if (st != null)
             {
                 st.Pressed();
+                if(stepontile != null){
+                    stepontile.Play();
+                }
                 Debug.Log("It is pressed");
             }
             else

@@ -15,10 +15,17 @@ public class DoorUpward2 : MonoBehaviour
     [SerializeField] private ParticleSystem right;
     [SerializeField] private GameObject closeDoorFX;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource loopAudio;
+    [SerializeField] private AudioSource openAudio;
+
     void Start()
     {
         closedPosition = transform.position;
         openPosition = closedPosition + openOffset;
+        if(loopAudio != null){
+            loopAudio.Play();
+        }
     }
 
     void Update()
@@ -42,6 +49,12 @@ public class DoorUpward2 : MonoBehaviour
             left.Play();
             right.Play();
         } 
+        if(loopAudio != null && loopAudio.isPlaying){
+            loopAudio.Stop();
+        }
+        if(openAudio != null){
+            openAudio.Play();
+        }
         if(closeDoorFX != null){
             closeDoorFX.SetActive(false);
         }
@@ -53,6 +66,10 @@ public class DoorUpward2 : MonoBehaviour
         isOpen = false;
         if(closeDoorFX != null){
             closeDoorFX.SetActive(true);
+        }
+        if (loopAudio != null && !loopAudio.isPlaying)
+        {
+            loopAudio.Play();
         }
     }
 }

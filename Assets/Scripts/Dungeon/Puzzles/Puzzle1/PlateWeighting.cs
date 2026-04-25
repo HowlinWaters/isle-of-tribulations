@@ -6,6 +6,7 @@ public class PlateWeighting : MonoBehaviour
 {
     [SerializeField] private int requiredWeight = 3;
     [SerializeField] private DoorUpward Door;
+    [SerializeField] private AudioSource trigger;
 
     private List<WeightObject> objonplate = new List<WeightObject>();
     private int curWeight = 0;
@@ -28,6 +29,7 @@ public class PlateWeighting : MonoBehaviour
             Debug.Log("Something entered plate: " + c.name);
             objonplate.Add(wb);
             calculateWeight();
+
         }
     }
     private void OnTriggerExit(Collider c)
@@ -36,6 +38,10 @@ public class PlateWeighting : MonoBehaviour
         if(wb != null && objonplate.Contains(wb)){
             objonplate.Remove(wb);
             calculateWeight();
+
+            if(trigger != null){
+                trigger.Stop();
+            }
         }
     }
 
@@ -53,6 +59,9 @@ public class PlateWeighting : MonoBehaviour
             if( magicircle != null && !magicircle.isPlaying){
                 magicircle.Play();
             }
+            if(trigger != null){
+                trigger.Play();
+            }
 
             if(Door != null){
                 Door.OpenDoor();
@@ -68,6 +77,9 @@ public class PlateWeighting : MonoBehaviour
             if (Door != null)
             {
                 Door.CloseDoor();
+            }
+            if(trigger != null){
+                trigger.Stop();
             }
         }
     }
