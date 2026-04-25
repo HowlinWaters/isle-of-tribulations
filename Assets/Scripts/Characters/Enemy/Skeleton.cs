@@ -21,19 +21,21 @@ public class Skeleton : MonoBehaviour
     
     [Header("Boundaries")]
     [SerializeField] private BoxCollider roomBounds;
-    private float directionInterval;
     private Animator animator;
     private Vector3 startingPos;
     private Plane[] planes;
     private new Renderer renderer;
     private Color originalColor;
     private Vector3 currentDirection;
+    private Vector3 lastPosition;
     private float directionTimer = 0f;
+    private float directionInterval;
     private int hp = 3;
     private float invincible = 0;
     private readonly float invincibleCD = 2f;
     private float cooldown;
     private readonly float cooldownDuration = 2f;
+    private float stuckTimer = 0f;
     private bool canMove;
 
 
@@ -51,7 +53,7 @@ public class Skeleton : MonoBehaviour
         float roomSizeX = roomBounds.bounds.size.x;
         float roomSizeZ = roomBounds.bounds.size.z;
         float minRoomSize = Mathf.Min(roomSizeX, roomSizeZ);
-        directionInterval = minRoomSize / speed;
+        directionInterval = Mathf.Min(minRoomSize / speed, 1.5f);
         PickNewDirection();
     }
 
@@ -66,6 +68,21 @@ public class Skeleton : MonoBehaviour
                 Move();
             if (invincible > 0) invincible -= Time.deltaTime;
             if (cooldown > 0) cooldown -= Time.deltaTime;
+            /* if (Vector3.Distance(transform.position, lastPosition) < 0.1f)
+            {
+                stuckTimer += Time.deltaTime;
+                if (stuckTimer > 0.5f)
+                {
+                    transform.position = startingPos;
+                    // PickNewDirection();
+                    stuckTimer = 0f;
+                }
+            }
+            else
+            {
+                stuckTimer = 0f;
+            }
+            lastPosition = transform.position; */
         }
     }
     
@@ -78,7 +95,8 @@ public class Skeleton : MonoBehaviour
     
     void Move()
     {
-        if (directionTimer <= 0f && canMove) PickNewDirection();
+        if (!canMove) return;
+        if (directionTimer <= 0f) PickNewDirection();
         directionTimer -= Time.deltaTime;
 
         float padding = 1f;
@@ -90,13 +108,14 @@ public class Skeleton : MonoBehaviour
         );
 
         // Boundary hit detected via clamp
-        if (clampedPosition != nextPosition)
+        /* if (clampedPosition != nextPosition)
         {
-            currentDirection = -currentDirection;
+            if (clampedPosition.x != nextPosition.x) currentDirection.x = -currentDirection.x;
+            if (clampedPosition.z != nextPosition.z) currentDirection.z = -currentDirection.z;
             directionTimer = directionInterval;
-        }
+        } */
 
-        if (canMove) controller.Move(clampedPosition - transform.position);
+        controller.Move(clampedPosition - transform.position);
         animator.SetFloat("Speed", speed);
 
         if (currentDirection != Vector3.zero)
@@ -106,13 +125,23 @@ public class Skeleton : MonoBehaviour
         }
     }
     
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    void OnTriggerEnter(Collider other)
     {
-        if (hit.gameObject.layer == LayerMask.NameToLayer("RoomBounds"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("RoomBounds"))
         {
             currentDirection = -currentDirection;
             directionTimer = directionInterval;
         }
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        /* if (hit.gameObject.layer == LayerMask.NameToLayer("RoomBounds"))
+        {
+            transform.position += hit.normal * 0.1f;
+            currentDirection = hit.normal;
+            directionTimer = directionInterval;
+        } */
 
         if (hit.gameObject.CompareTag("Player") && cooldown <= 0f)
         {
