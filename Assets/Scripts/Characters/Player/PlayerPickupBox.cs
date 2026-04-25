@@ -7,6 +7,8 @@ public class PlayerPickup : MonoBehaviour
 
     private GameObject heldObject;
 
+    [SerializeField] private AudioSource pickupsound;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
@@ -43,6 +45,9 @@ public class PlayerPickup : MonoBehaviour
                 heldObject.transform.SetParent(holdPoint);
                 heldObject.transform.localPosition = Vector3.zero;
                 heldObject.transform.localRotation = Quaternion.identity;
+                if(pickupsound != null){
+                    pickupsound.Play();
+                }
 
                 break;
             }
@@ -61,6 +66,10 @@ public class PlayerPickup : MonoBehaviour
             rb.isKinematic = false;
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+        }
+
+        if(pickupsound != null){
+                pickupsound.Play();
         }
 
         heldObject = null;

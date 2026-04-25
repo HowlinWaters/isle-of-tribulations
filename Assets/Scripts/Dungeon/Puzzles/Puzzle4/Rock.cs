@@ -5,40 +5,48 @@ public class Rock : MonoBehaviour
     [SerializeField] private LayerMask RockLayer;
     [SerializeField] private float checkDistance = 1.5f;
     [SerializeField] private float rayHeight = 1f;
+
+    [Header("VFX")]
+    [SerializeField] private GameObject hitVFX;
     [SerializeField] private GameObject breakVFX;
 
-    private Renderer rend;
-    private Color originalColor;
+    [SerializeField] private int hitsToBreak = 3;
+
+    private int hitCount = 0;
     private RockDestroyManager puzzleManager;
 
     void Start()
     {
-        rend = GetComponentInChildren<Renderer>();
-
-        if (rend != null)
-        {
-            originalColor = rend.material.color;
-        }
-
         puzzleManager = FindObjectOfType<RockDestroyManager>();
     }
 
-    public void SetStage(int stage)
+    public void Hit(Vector3 direction)
     {
-        if (rend == null) return;
+        hitCount++;
 
-        if (stage == 0)
+        PlayVFX(hitVFX);
+
+        if (hitCount >= hitsToBreak)
         {
-            rend.material.color = originalColor;
+            Break(direction);
         }
-        else if (stage == 1)
+    }
+
+    void PlayVFX(GameObject vfxPrefab)
+    {
+        if (vfxPrefab == null) return;
+
+        GameObject vfx = Instantiate(vfxPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
+
+        ParticleSystem[] particles = vfx.GetComponentsInChildren<ParticleSystem>();
+
+        foreach (ParticleSystem ps in particles)
         {
-            rend.material.color = Color.cyan;
+            ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            ps.Play();
         }
-        else if (stage == 2)
-        {
-            rend.material.color = Color.blue;
-        }
+
+        Destroy(vfx, 2f);
     }
 
     public void Break(Vector3 direction)
@@ -48,19 +56,15 @@ public class Rock : MonoBehaviour
 
         Vector3 origin = transform.position + Vector3.up * rayHeight;
 
-        RaycastHit hit;
         Rock nextBlock = null;
 
+        RaycastHit hit;
         if (Physics.Raycast(origin, direction, out hit, checkDistance, RockLayer))
         {
             nextBlock = hit.collider.GetComponent<Rock>();
         }
 
-        if (breakVFX != null)
-        {
-            Debug.Log("Break() called on: " + gameObject.name); 
-            Instantiate(breakVFX, transform.position + Vector3.up * 0.5f, Quaternion.identity);
-        }
+        PlayVFX(breakVFX);
 
         if (puzzleManager != null)
         {
