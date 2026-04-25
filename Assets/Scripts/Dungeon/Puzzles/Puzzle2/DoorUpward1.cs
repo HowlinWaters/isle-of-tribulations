@@ -11,6 +11,10 @@ public class DoorUpward1 : MonoBehaviour
     private Vector3 openPosition;
     private bool isOpen = false;
 
+    [SerializeField] private ParticleSystem left;
+    [SerializeField] private ParticleSystem right;
+    [SerializeField] private GameObject closeDoorFX;
+
     void Start()
     {
         closedPosition = transform.position;
@@ -31,11 +35,24 @@ public class DoorUpward1 : MonoBehaviour
 
     public void OpenDoor()
     {
+        if(isOpen) return;
+
         isOpen = true;
+        if(left != null && right != null){
+            left.Play();
+            right.Play();
+        } 
+        if(closeDoorFX != null){
+            closeDoorFX.SetActive(false);
+        }
     }
 
     public void CloseDoor()
     {
+        if(!isOpen) return;
         isOpen = false;
+        if(closeDoorFX != null){
+            closeDoorFX.SetActive(true);
+        }
     }
 }

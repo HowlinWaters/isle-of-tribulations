@@ -2,7 +2,8 @@
     "name": "Puzzle1",
     "rootNamespace": "",
     "references": [
-        "Dungeon"
+        "Dungeon",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

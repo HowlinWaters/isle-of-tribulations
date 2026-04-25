@@ -3,6 +3,8 @@ using UnityEngine;
 public class KeyBehavior : MonoBehaviour
 {
     [SerializeField] private int keyid = 1;
+    [SerializeField] private GameObject keyVFX;
+
 
     void Update()
     {
@@ -19,6 +21,10 @@ public class KeyBehavior : MonoBehaviour
             inventory.AddKey(keyid);
             Debug.Log("Picked up key " + keyid);
             gameObject.SetActive(false);
+
+            if(keyVFX != null){
+                keyVFX.SetActive(false);
+            }
         }
     }
 }
