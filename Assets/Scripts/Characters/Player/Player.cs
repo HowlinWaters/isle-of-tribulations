@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float gravityValue = -20f;
     [SerializeField] private int hp = 5;
     [SerializeField] private Vector3 startingPosition;
+    public bool isAttacking;
     // X: 2.559774
     // Y: 1.723569
     // Z: -11.34251
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
     [Header("Camera")]
     [SerializeField] private Transform cameraTransform;
 
+    // Attributes for scripts only
     private Vector3 playerVelocity;
     private Animator animator;
     private new SkinnedMeshRenderer renderer;
@@ -37,9 +39,6 @@ public class Player : MonoBehaviour
     private readonly float invincibleCD = 3f;
     private float footstepTimer = 0f;
     private readonly float footstepInterval = 0.3f;
-    
-    [Header("Attack")]
-    public bool isAttacking;
 
     void Start()
     {

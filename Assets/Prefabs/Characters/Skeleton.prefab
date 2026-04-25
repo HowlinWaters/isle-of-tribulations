@@ -315,10 +315,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 8466018717841602780}
   activeChar: {fileID: 4978761700430811610}
-  speed: 4
-  rotationSpeed: 360
+  speed: 2
+  rotationSpeed: 720
   knockbackForce: 1
   knockbackDuration: 0.005
+  directionInterval: 3
   cam: {fileID: 0}
   roomBounds: {fileID: 0}
 --- !u!136 &6180309610546371556

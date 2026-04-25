@@ -27,7 +27,7 @@ public class Attack : MonoBehaviour
         enemyLayer = LayerMask.GetMask("Enemy");
     }
 
-    // Function is called by an animation event.
+    // Hit is registered via an event in the slash animation
     void HitRegister()
     {
         Collider[] hits = Physics.OverlapBox(attackPoint.position, attackSize, transform.rotation, enemyLayer);
@@ -48,7 +48,7 @@ public class Attack : MonoBehaviour
         }
     }
     
-    // Function is called by an animation event.
+    // Hit is reset once the slash animation ends
     void ResetHit()
     {
         enemiesHit.Clear();

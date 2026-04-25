@@ -55,8 +55,7 @@ public class PlayerPickup : MonoBehaviour
 
         heldObject.transform.SetParent(null);
 
-        Rigidbody rb = heldObject.GetComponent<Rigidbody>();
-        if (rb != null)
+        if (heldObject.TryGetComponent<Rigidbody>(out var rb))
         {
             rb.isKinematic = false;
             rb.velocity = Vector3.zero;
