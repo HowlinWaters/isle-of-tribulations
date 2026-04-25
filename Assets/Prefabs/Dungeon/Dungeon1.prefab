@@ -7205,6 +7205,7 @@ Transform:
   m_Children:
   - {fileID: 168412809386700246}
   - {fileID: 390690378675524388}
+  - {fileID: 8383952770376599879}
   - {fileID: 8392098104574368704}
   - {fileID: 6858193245848545667}
   m_Father: {fileID: 7502245541425819290}
@@ -8880,10 +8881,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DungeonGateLocked (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.2000215
@@ -8934,6 +8931,94 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
   m_PrefabInstance: {fileID: 925685067512809757}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &934428713203620762
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6640054146851907067}
+    m_Modifications:
+    - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_Name
+      value: DungeonGateLocked (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -125.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -37.238426
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 457.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 925727058915351551, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2626469006466524682}
+  m_SourcePrefab: {fileID: 100100000, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+--- !u!4 &8383952770376599879 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+  m_PrefabInstance: {fileID: 934428713203620762}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9156407601754493949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+  m_PrefabInstance: {fileID: 934428713203620762}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2626469006466524682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156407601754493949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c43915549977384195c961dca6c843c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredkey: 3
 --- !u!1001 &980124786114375569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10754,13 +10839,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6640054146851907067}
     m_Modifications:
+    - target: {fileID: 925727058915351551, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: requiredkey
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_Name
       value: DungeonGateLocked (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14685,13 +14770,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6640054146851907067}
     m_Modifications:
+    - target: {fileID: 925727058915351551, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: requiredkey
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_Name
       value: DungeonGateLocked
-      objectReference: {fileID: 0}
-    - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_LocalPosition.x
