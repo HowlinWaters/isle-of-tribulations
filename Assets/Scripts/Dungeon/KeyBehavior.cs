@@ -20,6 +20,7 @@ public class KeyBehavior : MonoBehaviour
         if (!c.CompareTag("Player")) return;
 
         Inventory inventory = c.GetComponent<Inventory>();
+        Debug.Log($"Found {inventory.name}");
 
         if (inventory != null)
         {

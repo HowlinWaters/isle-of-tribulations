@@ -1,22 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using TMPro;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
     private List<int> collectedKeys = new List<int>();
-    //public TextMeshProUGUI countkeyText;
+    public TextMeshProUGUI countkeyText;
 
     void Start(){
-       // SetKeyText();
+       SetKeyText();
     }
 
     public void AddKey(int keyid){
         if(!collectedKeys.Contains(keyid)){
             collectedKeys.Add(keyid);
             Debug.Log("key added" + keyid);
-          //  SetKeyText();
+            SetKeyText();
         }
     }
     public bool HashKey(int keyid){
@@ -26,12 +26,12 @@ public class Inventory : MonoBehaviour
         if(collectedKeys.Contains(keyid)){
             collectedKeys.Remove(keyid);
             Debug.Log("key removed" + keyid);
-          //  SetKeyText();
+            SetKeyText();
         }
     }
 
-    // public void SetKeyText(){
-    //     countkeyText.text = "Keys: " + collectedKeys.Count.ToString();
-    // }
+    public void SetKeyText(){
+        countkeyText.text = "Keys: " + collectedKeys.Count.ToString();
+    }
 
 }
