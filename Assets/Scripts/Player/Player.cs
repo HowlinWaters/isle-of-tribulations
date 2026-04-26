@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Net.NetworkInformation;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(AudioSource))]
@@ -16,8 +17,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed = 4f;
     [SerializeField] private float rotationSpeed = 720f;
     [SerializeField] private float gravityValue = -20f;
-    public int hp = 5;
+    [SerializeField] private int hp = 5;
     [SerializeField] private Vector3 startingPosition;
+    [SerializeField] private TextMeshProUGUI HPText;
     public bool isAttacking;
     // X: 2.559774
     // Y: 1.723569
@@ -57,6 +59,8 @@ public class Player : MonoBehaviour
         {
             cameraTransform = Camera.main.transform;
         }
+        
+        SetHPText();
     }
 
     void Update()
@@ -74,8 +78,11 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return) && canMove && !isAttacking)
         {
-            Attack(); // no rocks nearby, attack normally
+            Attack(); 
         }
+        
+        // Keep player's HP updated
+        SetHPText();
     }
 
     void Move()
@@ -210,6 +217,16 @@ public class Player : MonoBehaviour
             yield return null;
         }
         UnlockMovement();
+    }
+    
+    public void GainHP(int amount)
+    {
+        hp += amount;
+    }
+    
+    private void SetHPText()
+    {
+        HPText.text = $"HP x{hp}";
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
