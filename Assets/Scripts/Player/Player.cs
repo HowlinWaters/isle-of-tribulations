@@ -181,11 +181,11 @@ public class Player : MonoBehaviour
     
     public void TakeDamage(int hpLost)
     {
+        if (invincible > 0) return;
         hp -= hpLost;
         Debug.Log($"Ouch! You have {hp} hits remaining!");
         invincible = invincibleCD;
-        float hurtDuration = invincible;
-        if (invincible > 0) StartCoroutine(BlinkCoroutine(hurtDuration));
+        StartCoroutine(BlinkCoroutine(invincible));
     }
     IEnumerator BlinkCoroutine(float duration)
     {

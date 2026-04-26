@@ -527,6 +527,10 @@ PrefabInstance:
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 93826949}
+    - target: {fileID: 9081964996004380200, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 93826948}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

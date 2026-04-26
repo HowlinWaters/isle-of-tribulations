@@ -9,6 +9,9 @@ public class Skeleton : Enemy
     private static readonly int DeathHash = Animator.StringToHash("Death");
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
     
+    [Header("Attributes")]
+    [SerializeField] private float padding;
+
     private Vector3 startingPos;
     private Plane[] planes;
     private float cooldown;
@@ -59,7 +62,6 @@ public class Skeleton : Enemy
         if (directionTimer <= 0f) PickNewDirection();
         directionTimer -= Time.deltaTime;
 
-        float padding = 1f;
         Vector3 nextPosition = transform.position + speed * Time.deltaTime * currentDirection.normalized;
         Vector3 clampedPosition = new Vector3(
             Mathf.Clamp(nextPosition.x, roomBounds.bounds.min.x + padding, roomBounds.bounds.max.x - padding),
