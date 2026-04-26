@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour, IHittable
     
     [Header("VFX")]
     [SerializeField] protected ParticleSystem fireVFX;
+    [SerializeField] protected new Light light;
 
     protected Animator animator;
     protected float invincible = 0;
@@ -43,9 +44,11 @@ public class Enemy : MonoBehaviour, IHittable
         controller = GetComponent<CharacterController>();
         animator = activeChar.GetComponent<Animator>();
         renderer = activeChar.GetComponentInChildren<Renderer>();
+        light = activeChar.GetComponentInChildren<Light>();
+        fireVFX = activeChar.GetComponentInChildren<ParticleSystem>();
         originalColor = renderer.material.color;
         canMove = true;
-        fireVFX = activeChar.GetComponentInChildren<ParticleSystem>();
+        light.enabled = false;
     }
 
     public virtual void TakeDamage(int hpLost, Vector3 direction) => TakeDamage(hpLost);

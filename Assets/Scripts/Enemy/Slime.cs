@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -106,11 +107,20 @@ public class Slime : Enemy
     {
         animator.SetTrigger(DeathHash);
         animator.SetFloat(SpeedHash, 0);
+        light.transform.SetParent(null);
         fireVFX.transform.SetParent(null);
         fireVFX.Simulate(1f, true, true);
         fireVFX.Play();
         Destroy(activeChar);
         Destroy(fireVFX.gameObject, 2f);
+        Destroy(light.gameObject, 2f);
+        StartCoroutine(FlashLight());
+    }
+    IEnumerator FlashLight()
+    {
+        light.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        light.enabled = false;
     }
     
     public override void TakeDamage(int hpLost, Vector3 direction)
