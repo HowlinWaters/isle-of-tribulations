@@ -18,9 +18,18 @@ public class Enemy : MonoBehaviour, IHittable
     [SerializeField] protected float knockbackDuration;
     [SerializeField] protected int hp = 3;
 
+    [Header("Camera")]
+    [SerializeField] protected Camera cam;
+    
+    [Header("Boundaries")]
+    [SerializeField] protected BoxCollider roomBounds;
+
     protected Animator animator;
     protected float invincible = 0;
     protected readonly float invincibleCD = 2f;
+    protected Vector3 currentDirection;
+    protected float directionTimer = 0f;
+    protected float directionInterval;
     protected bool canMove;
     protected new Renderer renderer;
     protected Color originalColor;

@@ -27,6 +27,7 @@ public class Rock : MonoBehaviour, IHittable
 
     public void Hit(Vector3 direction)
     {
+        Debug.Log($"Number of hits: {hitCount}");
         hitCount++;
 
         PlayVFX(hitVFX);

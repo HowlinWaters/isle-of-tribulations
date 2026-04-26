@@ -33,18 +33,24 @@ public class Attack : MonoBehaviour
         Collider[] hits = Physics.OverlapBox(attackPoint.position, attackSize, transform.rotation, hittableLayer);
         foreach (Collider hit in hits)
         {
-            if (!enemiesHit.Contains(hit.gameObject))
+            GameObject root = hit.transform.root.gameObject;
+            if (enemiesHit.Contains(root)) continue;
+            // Enemy gets hurt
+            enemiesHit.Add(root);
+            IHittable hittable = hit.GetComponent<IHittable>() ?? hit.GetComponentInParent<IHittable>();
+            if (hittable != null)
             {
-                // Enemy gets hurt
-                enemiesHit.Add(hit.gameObject);
-                
-                Skeleton skeleton = hit.GetComponent<Skeleton>();
-                Debug.Log($"{skeleton.gameObject.name} is hit!");
-                skeleton.TakeDamage(1, Vector3.zero);
-                
-                // Enemy takes knockback
-                Vector3 knockbackDirection = (skeleton.transform.position - attackPoint.position).normalized;
-                skeleton.ApplyKnockback(knockbackDirection, knockbackForce, knockbackDuration);
+                Vector3 hitDirection = (hit.transform.position - attackPoint.position).normalized;
+                hittable.TakeDamage(1, hitDirection);
+                Enemy enemy = hit.GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    Debug.Log($"{enemy.gameObject.name} is hit!");
+                    
+                    // Enemy takes knockback
+                    Vector3 knockbackDirection = (enemy.transform.position - attackPoint.position).normalized;
+                    enemy.ApplyKnockback(knockbackDirection, knockbackForce, knockbackDuration);
+                }
             }
         }
     }

@@ -8,16 +8,8 @@ public class Slime : Enemy
     private static readonly int DeathHash = Animator.StringToHash("Death");
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
 
-    [Header("Camera")]
-    [SerializeField] private Camera cam;
-    
-    [Header("Boundaries")]
-    [SerializeField] private BoxCollider roomBounds;
     private Vector3 startingPos;
     private Plane[] planes;
-    private Vector3 currentDirection;
-    private float directionTimer = 0f;
-    private float directionInterval;
     private float cooldown;
     private readonly float cooldownDuration = 2f;
     private bool isDamaged;
@@ -104,6 +96,10 @@ public class Slime : Enemy
             player.ApplyKnockback(knockbackDirection, knockbackForce, knockbackDuration);
             cooldown = cooldownDuration;
         }
+        
+        if (hit.moveDirection.y < -0.3f) return;
+        currentDirection = -currentDirection;
+        directionTimer = directionInterval;
     }
     
     protected override void Die()
