@@ -8,3 +8,4 @@ Simple Water Shader URP - IgniteCoders ([text](https://assetstore.unity.com/pack
 Jackie - Mixamo ([text](https://www.mixamo.com/#/?page=2&type=Character))
 Stylized Free Skeleton - ThunderForgeStudio ([text](https://assetstore.unity.com/packages/3d/characters/creatures/stylized-free-skeleton-298650))
 HQ Rocks Pack - Next Level 3D ([text](https://assetstore.unity.com/packages/3d/props/exterior/hq-rocks-pack-66895#content))
+Level 1 Monster Pack - PI Entertainment Limited ([text](https://assetstore.unity.com/packages/3d/characters/creatures/level-1-monster-pack-77703))
