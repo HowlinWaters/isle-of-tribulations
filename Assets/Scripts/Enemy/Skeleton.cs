@@ -65,6 +65,10 @@ public class Skeleton : Enemy
             nextPosition.y,
             Mathf.Clamp(nextPosition.z, roomBounds.bounds.min.z + padding, roomBounds.bounds.max.z - padding)
         );
+        
+        // Detect wall collision - enemy gets unstuck
+        if (clampedPosition.x != nextPosition.x) currentDirection.x = -currentDirection.x;
+        if (clampedPosition.z != nextPosition.z) currentDirection.z = -currentDirection.z;
 
         controller.Move(clampedPosition - transform.position);
         animator.SetFloat(SpeedHash, speed);
@@ -78,7 +82,8 @@ public class Skeleton : Enemy
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("RoomBounds"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("RoomBounds") ||
+            other.gameObject.CompareTag("Wall"))
         {
             currentDirection = -currentDirection;
             directionTimer = directionInterval;
@@ -87,6 +92,7 @@ public class Skeleton : Enemy
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        Debug.Log($"Hit: {hit.gameObject.name}, layer: {LayerMask.LayerToName(hit.gameObject.layer)}, normal: {hit.normal}");
         if (hit.gameObject.CompareTag("Player") && cooldown <= 0f)
         {
             Player player = hit.gameObject.GetComponent<Player>();
@@ -96,16 +102,13 @@ public class Skeleton : Enemy
             player.ApplyKnockback(knockbackDirection, knockbackForce, knockbackDuration);
             cooldown = cooldownDuration;
         }
-        
-        if (hit.moveDirection.y < -0.3f) return;
-        currentDirection = -currentDirection;
-        directionTimer = directionInterval;
     }
     
     protected override void Die()
     {
         animator.SetTrigger(DeathHash);
         animator.SetFloat(SpeedHash, 0);
+        Destroy(activeChar);
     }
     
     public override void TakeDamage(int hpLost, Vector3 direction)

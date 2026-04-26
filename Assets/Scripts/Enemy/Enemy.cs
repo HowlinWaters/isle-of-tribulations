@@ -66,7 +66,16 @@ public class Enemy : MonoBehaviour, IHittable
         while (elapsed < duration)
         {
             float currentForce = Mathf.Lerp(force, 0f, elapsed / duration);
-            controller.Move(currentForce * Time.fixedDeltaTime * direction);
+            float padding = 1f;
+            
+            Vector3 nextPosition = transform.position + currentForce * Time.fixedDeltaTime * direction;
+            Vector3 clampedPosition = new Vector3(
+                Mathf.Clamp(nextPosition.x, roomBounds.bounds.min.x + padding, roomBounds.bounds.max.x - padding),
+                nextPosition.y,
+                Mathf.Clamp(nextPosition.z, roomBounds.bounds.min.z + padding, roomBounds.bounds.max.z - padding)
+            );
+
+            controller.Move(clampedPosition - transform.position);
             elapsed += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
