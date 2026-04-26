@@ -387,10 +387,9 @@ GameObject:
   - component: {fileID: 1678486794692256831}
   - component: {fileID: 4350786503843014028}
   - component: {fileID: 6436686608730182231}
-  - component: {fileID: 8358661605387972525}
   m_Layer: 8
   m_Name: Wall (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -481,26 +480,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8358661605387972525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 654720261895354767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 380f6865bbf302040992db863aa7bc64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RockLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  checkDistance: 1.5
-  rayHeight: 1
-  hitVFX: {fileID: 5834594033819846101}
-  breakVFX: {fileID: 0}
-  hitsToBreak: 1
 --- !u!1 &972550281935633178
 GameObject:
   m_ObjectHideFlags: 0
@@ -4661,10 +4640,9 @@ GameObject:
   - component: {fileID: 6803872721376903001}
   - component: {fileID: 5555792193004380236}
   - component: {fileID: 8216899426828954193}
-  - component: {fileID: 605103838592891765}
   m_Layer: 8
   m_Name: Wall (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4755,26 +4733,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.99999994, z: 1}
   m_Center: {x: -0.00000011920929, y: 0, z: 0}
---- !u!114 &605103838592891765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5113785600317627896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 380f6865bbf302040992db863aa7bc64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RockLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  checkDistance: 1.5
-  rayHeight: 1
-  hitVFX: {fileID: 5834594033819846101}
-  breakVFX: {fileID: 0}
-  hitsToBreak: 1
 --- !u!1 &5234187798328508912
 GameObject:
   m_ObjectHideFlags: 0
@@ -8442,10 +8400,9 @@ GameObject:
   - component: {fileID: 644983628491953246}
   - component: {fileID: 3547587531831796047}
   - component: {fileID: 7429228586364900048}
-  - component: {fileID: 6206085206575699572}
   m_Layer: 8
   m_Name: Wall (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8536,26 +8493,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6206085206575699572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8809051802839106964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 380f6865bbf302040992db863aa7bc64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RockLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  checkDistance: 1.5
-  rayHeight: 1
-  hitVFX: {fileID: 5834594033819846101}
-  breakVFX: {fileID: 0}
-  hitsToBreak: 1
 --- !u!1 &8906633809051820956
 GameObject:
   m_ObjectHideFlags: 0
@@ -12810,6 +12747,14 @@ PrefabInstance:
       propertyPath: countkeyText
       value: 
       objectReference: {fileID: 4847821196105814273}
+    - target: {fileID: 4295304060114884340, guid: fc0c52a51c2751141acd6b306666432f, type: 3}
+      propertyPath: hitVFX
+      value: 
+      objectReference: {fileID: 5834594033819846101}
+    - target: {fileID: 4295304060114884340, guid: fc0c52a51c2751141acd6b306666432f, type: 3}
+      propertyPath: hittableLayer.m_Bits
+      value: 776
+      objectReference: {fileID: 0}
     - target: {fileID: 4820400864829321895, guid: fc0c52a51c2751141acd6b306666432f, type: 3}
       propertyPath: HPText
       value: 

@@ -13,6 +13,7 @@ public class Attack : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Vector3 attackSize = new Vector3(1f, 1f, 1f);
     [SerializeField] private LayerMask hittableLayer;
+    [SerializeField] private GameObject hitVFX;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip swordClip;
     [SerializeField] private AudioClip hammerClip;
@@ -29,6 +30,23 @@ public class Attack : MonoBehaviour
         Debug.Log($"Player is holding {weapon}");
         attackPoint = weapon.GetComponent<Transform>();
     }
+    
+    void PlayVFX(GameObject vfxPrefab)
+    {
+        if (vfxPrefab == null) return;
+
+        GameObject vfx = Instantiate(vfxPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
+
+        ParticleSystem[] particles = vfx.GetComponentsInChildren<ParticleSystem>();
+
+        foreach (ParticleSystem ps in particles)
+        {
+            ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            ps.Play();
+        }
+
+        Destroy(vfx, 2f);
+    }
 
     // Hit is registered via an event in the slash animation
     void HitRegister()
@@ -36,6 +54,7 @@ public class Attack : MonoBehaviour
         Collider[] hits = Physics.OverlapBox(attackPoint.position, attackSize, transform.rotation, hittableLayer);
         foreach (Collider hit in hits)
         {
+            Debug.Log($"Striking {hit.gameObject.name} with tag {hit.tag}");
             GameObject root = hit.transform.root.gameObject;
             if (enemiesHit.Contains(root)) continue;
             // Enemy gets hurt
@@ -43,6 +62,7 @@ public class Attack : MonoBehaviour
             IHittable hittable = hit.GetComponent<IHittable>() ?? hit.GetComponentInParent<IHittable>();
             if (hittable != null)
             {
+                Debug.Log($"Striking {hit.gameObject.name} with tag {hit.tag}");
                 Vector3 hitDirection = (hit.transform.position - attackPoint.position).normalized;
                 hittable.TakeDamage(1, hitDirection);
                 Enemy enemy = hit.GetComponent<Enemy>();
@@ -62,6 +82,13 @@ public class Attack : MonoBehaviour
                         audioSource.PlayOneShot(hammerClip);
                     }
                 }
+                
+            }
+            if (hit.CompareTag("Wall"))
+            {
+                Debug.Log($"{hit.gameObject.name} hit!");
+                PlayVFX(hitVFX);
+                Destroy(hit.gameObject);
             }
         }
     }
