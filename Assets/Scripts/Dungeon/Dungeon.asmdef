@@ -2,7 +2,8 @@
     "name": "Dungeon",
     "rootNamespace": "",
     "references": [
-        "Characters"
+        "Characters",
+        "Shared"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

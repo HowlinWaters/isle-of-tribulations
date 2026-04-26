@@ -587,9 +587,9 @@ MonoBehaviour:
   gravityValue: -20
   hp: 5
   startingPosition: {x: 2.559774, y: 1.723569, z: -11.34251}
+  isAttacking: 0
   audioSource: {fileID: 5609265712756449860}
   cameraTransform: {fileID: 0}
-  isAttacking: 0
 --- !u!114 &4295304060114884340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,9 +606,9 @@ MonoBehaviour:
   player: {fileID: 4820400864829321895}
   attackPoint: {fileID: 2814614646214427173}
   attackSize: {x: 1, y: 1, z: 1}
-  enemyLayer:
+  hittableLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 264
   knockbackForce: 80
   knockbackDuration: 0.15
 --- !u!114 &3227160665128174971
@@ -651,6 +651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f996bc23b45cc4b8db5840cd046f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  countkeyText: {fileID: 0}
 --- !u!114 &4528942925544859735
 MonoBehaviour:
   m_ObjectHideFlags: 0

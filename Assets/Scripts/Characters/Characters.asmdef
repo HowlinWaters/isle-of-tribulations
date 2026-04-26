@@ -3,7 +3,8 @@
     "rootNamespace": "",
     "references": [
         "Game",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "Shared"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

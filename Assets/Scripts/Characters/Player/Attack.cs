@@ -11,7 +11,8 @@ public class Attack : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Vector3 attackSize = new Vector3(1f, 1f, 1f);
-    [SerializeField] private LayerMask enemyLayer;
+    // [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private LayerMask hittableLayer;
     
     [Header("Knockback")]
     [SerializeField] private float knockbackForce;
@@ -24,22 +25,22 @@ public class Attack : MonoBehaviour
     {
         Debug.Log($"Player is holding {weapon}");
         attackPoint = weapon.GetComponent<Transform>();
-        enemyLayer = LayerMask.GetMask("Enemy");
     }
 
     // Hit is registered via an event in the slash animation
     void HitRegister()
     {
-        Collider[] hits = Physics.OverlapBox(attackPoint.position, attackSize, transform.rotation, enemyLayer);
+        Collider[] hits = Physics.OverlapBox(attackPoint.position, attackSize, transform.rotation, hittableLayer);
         foreach (Collider hit in hits)
         {
             if (!enemiesHit.Contains(hit.gameObject))
             {
                 // Enemy gets hurt
                 enemiesHit.Add(hit.gameObject);
+                
                 Skeleton skeleton = hit.GetComponent<Skeleton>();
                 Debug.Log($"{skeleton.gameObject.name} is hit!");
-                skeleton.TakeDamage(1);
+                skeleton.TakeDamage(1, Vector3.zero);
                 
                 // Enemy takes knockback
                 Vector3 knockbackDirection = (skeleton.transform.position - attackPoint.position).normalized;

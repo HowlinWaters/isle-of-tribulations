@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class Skeleton : MonoBehaviour
+public class Skeleton : MonoBehaviour, IHittable
 {
     
     [Header("Character")]
@@ -152,6 +152,11 @@ public class Skeleton : MonoBehaviour
         if (!canMove) canMove = true;
     }
     
+    public void TakeDamage(int hpLost, Vector3 direction)
+    {
+        TakeDamage(hpLost);
+    }
+
     public void TakeDamage(int hpLost)
     {
         hp -= hpLost;

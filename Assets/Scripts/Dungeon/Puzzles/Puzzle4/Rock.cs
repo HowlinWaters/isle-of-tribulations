@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Rock : MonoBehaviour
+public class Rock : MonoBehaviour, IHittable
 {
     [SerializeField] private LayerMask RockLayer;
     [SerializeField] private float checkDistance = 1.5f;
@@ -18,6 +18,11 @@ public class Rock : MonoBehaviour
     void Start()
     {
         puzzleManager = FindObjectOfType<RockDestroyManager>();
+    }
+    
+    public void TakeDamage(int hpLost, Vector3 direction)
+    {
+        Hit(direction);
     }
 
     public void Hit(Vector3 direction)
