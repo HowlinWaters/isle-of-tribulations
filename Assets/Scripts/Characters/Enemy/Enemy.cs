@@ -12,13 +12,13 @@ public class Enemy : MonoBehaviour, IHittable
     [SerializeField] protected GameObject activeChar;
 
     [Header("Attributes")]
-    [SerializeField] protected float speed = 4f;
-    [SerializeField] protected float rotationSpeed = 720f;
-    [SerializeField] protected float knockbackForce = 5f;
-    [SerializeField] protected float knockbackDuration = 0.1f;
+    [SerializeField] protected float speed;
+    [SerializeField] protected float rotationSpeed;
+    [SerializeField] protected float knockbackForce;
+    [SerializeField] protected float knockbackDuration;
+    [SerializeField] protected int hp = 3;
 
     protected Animator animator;
-    protected int hp = 3;
     protected float invincible = 0;
     protected readonly float invincibleCD = 2f;
     protected bool canMove;

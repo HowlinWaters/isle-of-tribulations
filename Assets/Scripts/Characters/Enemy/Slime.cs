@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class Skeleton : Enemy
+public class Slime : Enemy
 {
 
     // Parameter ID generated from string
