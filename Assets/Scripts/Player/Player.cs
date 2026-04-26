@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private static WaitForSeconds _waitForSeconds0_61 = new WaitForSeconds(0.61f);
-    private static WaitForSeconds _waitForSeconds0_1 = new WaitForSeconds(0.1f);
+
     [Header("Character")]
     [SerializeField] private CharacterController controller;
     [SerializeField] private GameObject activeChar;
@@ -73,12 +73,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return) && canMove && !isAttacking)
         {
-            // Collider[] hits = Physics.OverlapSphere(transform.position, 5f, LayerMask.GetMask("RockLayer"));
-        
-            // if (hits.Length == 0)
-            // {
             Attack(); // no rocks nearby, attack normally
-            // }
         }
     }
 
@@ -155,7 +150,7 @@ public class Player : MonoBehaviour
         UnlockMovement();
     }
 
-    void PlayFootsteps(Vector3 moveDirection)
+    internal void PlayFootsteps(Vector3 moveDirection)
     {
         bool isRunning = moveDirection != Vector3.zero && groundedPlayer;
 
