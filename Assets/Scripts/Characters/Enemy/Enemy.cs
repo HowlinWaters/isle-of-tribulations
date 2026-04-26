@@ -1,18 +1,70 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IHittable
 {
-    // Start is called before the first frame update
-    void Start()
+    // Parameter ID generated from string
+    private static readonly int SpeedHash = Animator.StringToHash("Speed");
+    
+    [Header("Character")]
+    [SerializeField] protected CharacterController controller;
+    [SerializeField] protected GameObject activeChar;
+
+    [Header("Attributes")]
+    [SerializeField] protected float speed = 4f;
+    [SerializeField] protected float rotationSpeed = 720f;
+    [SerializeField] protected float knockbackForce = 5f;
+    [SerializeField] protected float knockbackDuration = 0.1f;
+
+    protected Animator animator;
+    protected int hp = 3;
+    protected float invincible = 0;
+    protected readonly float invincibleCD = 2f;
+    protected bool canMove;
+    protected new Renderer renderer;
+    protected Color originalColor;
+
+    protected virtual void Start()
     {
-        
+        controller = GetComponent<CharacterController>();
+        animator = activeChar.GetComponent<Animator>();
+        renderer = activeChar.GetComponentInChildren<Renderer>();
+        originalColor = renderer.material.color;
+        canMove = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void TakeDamage(int hpLost, Vector3 direction) => TakeDamage(hpLost);
+    public virtual void TakeDamage(int hpLost)
     {
-        
+        if (invincible > 0) return;
+        hp -= hpLost;
+        invincible = invincibleCD;
+        if (hp <= 0) Debug.Log($"{gameObject.name} is dead!");
+        else Debug.Log($"{gameObject.name} has {hp} hits left!");
     }
+
+    public void ApplyKnockback(Vector3 direction, float force, float duration)
+    {
+        StartCoroutine(KnockbackCoroutine(direction, force, duration));
+    }
+
+    IEnumerator KnockbackCoroutine(Vector3 direction, float force, float duration)
+    {
+        float elapsed = 0f;
+        LockMovement();
+        animator.SetFloat(SpeedHash, 0);
+        while (elapsed < duration)
+        {
+            float currentForce = Mathf.Lerp(force, 0f, elapsed / duration);
+            controller.Move(currentForce * Time.fixedDeltaTime * direction);
+            elapsed += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        UnlockMovement();
+    }
+
+    protected void LockMovement() { if (canMove) canMove = false; }
+    protected void UnlockMovement() { if (!canMove) canMove = true; }
+    protected virtual void Die() { }
 }

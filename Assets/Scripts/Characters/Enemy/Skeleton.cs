@@ -3,51 +3,41 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class Skeleton : MonoBehaviour, IHittable
+public class Skeleton : Enemy
 {
-    
-    [Header("Character")]
-    [SerializeField] private CharacterController controller;
-    [SerializeField] private GameObject activeChar;
-    
-    [Header("Attributes")]
-    [SerializeField] private float speed = 4f;
-    [SerializeField] private float rotationSpeed = 720f;
-    [SerializeField] private float knockbackForce = 5f;
-    [SerializeField] private float knockbackDuration = 0.1f;
+
+    // Parameter ID generated from string
+    private static readonly int DeathHash = Animator.StringToHash("Death");
+    private static readonly int SpeedHash = Animator.StringToHash("Speed");
 
     [Header("Camera")]
     [SerializeField] private Camera cam;
     
     [Header("Boundaries")]
     [SerializeField] private BoxCollider roomBounds;
-    private Animator animator;
+    // private Animator animator;
     private Vector3 startingPos;
     private Plane[] planes;
-    private new Renderer renderer;
-    private Color originalColor;
+    // private new Renderer renderer;
+    // private Color originalColor;
     private Vector3 currentDirection;
     private float directionTimer = 0f;
     private float directionInterval;
-    private int hp = 3;
-    private float invincible = 0;
-    private readonly float invincibleCD = 2f;
+    private new int hp = 3;
+    // private float invincible = 0;
+    // private readonly float invincibleCD = 2f;
     private float cooldown;
     private readonly float cooldownDuration = 2f;
-    private bool canMove;
+    // private bool canMove;
     private bool isDamaged;
 
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        controller = GetComponent<CharacterController>();
-        animator = activeChar.GetComponent<Animator>();
+        base.Start();
         cam = Camera.main;
         startingPos = transform.position;
-        renderer = activeChar.GetComponentInChildren<Renderer>();
-        originalColor = renderer.material.color;
-        canMove = true;
         
         float roomSizeX = roomBounds.bounds.size.x;
         float roomSizeZ = roomBounds.bounds.size.z;
@@ -102,7 +92,7 @@ public class Skeleton : MonoBehaviour, IHittable
         } */
 
         controller.Move(clampedPosition - transform.position);
-        animator.SetFloat("Speed", speed);
+        animator.SetFloat(SpeedHash, speed);
 
         if (currentDirection != Vector3.zero)
         {
@@ -133,31 +123,18 @@ public class Skeleton : MonoBehaviour, IHittable
         }
     }
     
-    void Die()
+    protected override void Die()
     {
-        animator.SetTrigger("Death");
-        animator.SetFloat("Speed", 0);
+        animator.SetTrigger(DeathHash);
+        animator.SetFloat(SpeedHash, 0);
     }
     
-    void LockMovement()
-    {
-        if (canMove)
-        {
-            canMove = false;
-        }
-    }
-
-    void UnlockMovement()
-    {
-        if (!canMove) canMove = true;
-    }
-    
-    public void TakeDamage(int hpLost, Vector3 direction)
+    public override void TakeDamage(int hpLost, Vector3 direction)
     {
         TakeDamage(hpLost);
     }
 
-    public void TakeDamage(int hpLost)
+    public override void TakeDamage(int hpLost)
     {
         hp -= hpLost;
         isDamaged = true;
@@ -165,25 +142,5 @@ public class Skeleton : MonoBehaviour, IHittable
         else Debug.Log($"{gameObject.name} has {hp} hits left!");
         invincible = invincibleCD;
         isDamaged = false;
-    }
-
-    public void ApplyKnockback(Vector3 direction, float force, float duration)
-    {
-        StartCoroutine(KnockbackCoroutine(direction, force, duration));
-    }
-    
-    IEnumerator KnockbackCoroutine(Vector3 direction, float force, float duration)
-    {
-        float elapsed = 0f;
-        LockMovement();
-        animator.SetFloat("Speed", 0);
-        while (elapsed < duration)
-        {
-            float currentForce = Mathf.Lerp(force, 0f, elapsed / duration);
-            controller.Move(currentForce * Time.fixedDeltaTime * direction);
-            elapsed += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-        UnlockMovement();
     }
 }
