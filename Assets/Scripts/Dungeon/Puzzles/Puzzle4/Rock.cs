@@ -13,6 +13,7 @@ public class Rock : MonoBehaviour, IHittable
     [SerializeField] private int hitsToBreak = 3;
 
     private int hitCount = 0;
+    private float hitCooldown = 0f;
     private RockDestroyManager puzzleManager;
 
     void Start()
@@ -20,8 +21,15 @@ public class Rock : MonoBehaviour, IHittable
         puzzleManager = FindObjectOfType<RockDestroyManager>();
     }
     
+    void Update()
+    {
+        if (hitCooldown >= 0f) hitCooldown -= Time.deltaTime;
+    }
+    
     public void TakeDamage(int hpLost, Vector3 direction)
     {
+        /* if (hitCooldown >= 0f) return;
+        hitCooldown = 2.0f */;
         Hit(direction);
     }
 
