@@ -5,11 +5,7 @@ using UnityEngine;
 public class UnlockGate : MonoBehaviour
 {
     [SerializeField] private int requiredkey = 1;
-    private void OnTriggerEnter(Collider c){
-        if(!c.CompareTag("Player")) return;
-
-        Inventory inventory = c.GetComponent<Inventory>();
-
+    public void TryUnlock(Inventory inventory){
         if(inventory != null && inventory.HashKey(requiredkey)){
             inventory.UseKey(requiredkey);
             Debug.Log("Unlock door");

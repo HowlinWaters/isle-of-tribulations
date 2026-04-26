@@ -82,8 +82,7 @@ public class Skeleton : Enemy
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("RoomBounds") ||
-            other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("RoomBounds"))
         {
             currentDirection = -currentDirection;
             directionTimer = directionInterval;

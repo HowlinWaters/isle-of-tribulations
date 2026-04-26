@@ -31,7 +31,7 @@ public class Inventory : MonoBehaviour
     }
 
     public void SetKeyText(){
-        countkeyText.text = "Keys: " + collectedKeys.Count.ToString();
+        countkeyText.text = "Keys x" + collectedKeys.Count.ToString();
     }
 
 }

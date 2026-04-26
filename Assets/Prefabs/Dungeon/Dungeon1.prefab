@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1472657938651886613}
   m_Layer: 9
   m_Name: DoorWall (4)
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1098,7 +1098,7 @@ GameObject:
   - component: {fileID: 1449328398379940093}
   m_Layer: 6
   m_Name: DoorWall (4)
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6687,7 +6687,7 @@ GameObject:
   - component: {fileID: 8571519954118435882}
   m_Layer: 9
   m_Name: DoorWall (5)
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8014,7 +8014,7 @@ GameObject:
   - component: {fileID: 8631321622502794536}
   m_Layer: 6
   m_Name: DoorWall (5)
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9043,6 +9043,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6640054146851907067}
     m_Modifications:
+    - target: {fileID: 4069187225337181635, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_Name
       value: DungeonGateLocked (1)
@@ -9050,6 +9054,10 @@ PrefabInstance:
     - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_TagString
+      value: Gate
       objectReference: {fileID: 0}
     - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9111,7 +9119,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4069187225337181635, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069187225337181635, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_Name
@@ -9120,6 +9132,10 @@ PrefabInstance:
     - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_TagString
+      value: Gate
       objectReference: {fileID: 0}
     - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11225,6 +11241,10 @@ PrefabInstance:
       propertyPath: requiredkey
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4069187225337181635, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_Name
       value: DungeonGateLocked (2)
@@ -11232,6 +11252,10 @@ PrefabInstance:
     - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_TagString
+      value: Gate
       objectReference: {fileID: 0}
     - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13503,7 +13527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3526526738717953206, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4460290930769988393, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_Layer
@@ -13511,7 +13535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4460290930769988393, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5091079873397962408, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_Layer
@@ -13519,7 +13543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5091079873397962408, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6214638146865594214, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_Layer
@@ -13527,7 +13551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6214638146865594214, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6331948572242155542, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_Layer
@@ -13535,7 +13559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6331948572242155542, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7174754741846260284, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_Layer
@@ -13543,7 +13567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7174754741846260284, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7552767232396365169, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_Size.x
@@ -13579,7 +13603,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7769799114379818568, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7821120817235770478, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -13591,7 +13615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8584268976173327210, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 9093394760850801831, guid: 280ead59ccd04d8429e856bc9721885d, type: 3}
       propertyPath: m_Size.x
@@ -13860,7 +13884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 588105067049246999, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 859585203990079664, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13892,7 +13916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3206728200268450043, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3553144049973127841, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_Layer
@@ -13900,7 +13924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3553144049973127841, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3627974669850485982, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_Name
@@ -13912,7 +13936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3627974669850485982, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3890948575654693407, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_Size.x
@@ -13980,7 +14004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6698487414228035685, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7190193813086134905, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_Layer
@@ -13988,7 +14012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7190193813086134905, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7197666837534465340, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_LocalScale.x
@@ -14664,7 +14688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 588105067049246999, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1099620625125325560, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14700,7 +14724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3206728200268450043, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3553144049973127841, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_Layer
@@ -14708,7 +14732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3553144049973127841, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3627974669850485982, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_Name
@@ -14720,7 +14744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3627974669850485982, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3690253603489415379, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -14804,7 +14828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6698487414228035685, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7190193813086134905, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_Layer
@@ -14812,7 +14836,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7190193813086134905, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7197666837534465340, guid: 9f9c50399d2641d49b7b832ff21fe4d2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15887,6 +15911,14 @@ PrefabInstance:
       propertyPath: requiredkey
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4069187225337181635, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069187225337181635, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_Name
       value: DungeonGateLocked
@@ -15894,6 +15926,10 @@ PrefabInstance:
     - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351320527501920359, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
+      propertyPath: m_TagString
+      value: Gate
       objectReference: {fileID: 0}
     - target: {fileID: 8695898278645879517, guid: d4c0d701b36ee5844802be63a4f0971c, type: 3}
       propertyPath: m_LocalPosition.x

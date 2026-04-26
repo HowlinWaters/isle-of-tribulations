@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -211,5 +212,15 @@ public class Player : MonoBehaviour
         UnlockMovement();
     }
 
-    
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("Gate"))
+        {
+            UnlockGate gate = hit.gameObject.GetComponent<UnlockGate>();
+            if (gate != null)
+            {
+                gate.TryUnlock(GetComponent<Inventory>());
+            }
+        }
+    }
 }
