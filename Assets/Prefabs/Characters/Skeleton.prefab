@@ -1,5 +1,72 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3765385840838910388
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5644081050554452832}
+    m_Modifications:
+    - target: {fileID: 3645337143003560107, guid: ab10cb1831336c843b9e4872906ee9ea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3645337143003560107, guid: ab10cb1831336c843b9e4872906ee9ea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3645337143003560107, guid: ab10cb1831336c843b9e4872906ee9ea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3645337143003560107, guid: ab10cb1831336c843b9e4872906ee9ea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7933535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3645337143003560107, guid: ab10cb1831336c843b9e4872906ee9ea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.60876125
+      objectReference: {fileID: 0}
+    - target: {fileID: 3645337143003560107, guid: ab10cb1831336c843b9e4872906ee9ea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3645337143003560107, guid: ab10cb1831336c843b9e4872906ee9ea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3645337143003560107, guid: ab10cb1831336c843b9e4872906ee9ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3645337143003560107, guid: ab10cb1831336c843b9e4872906ee9ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3645337143003560107, guid: ab10cb1831336c843b9e4872906ee9ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351964220126319731, guid: ab10cb1831336c843b9e4872906ee9ea, type: 3}
+      propertyPath: m_Name
+      value: FireDeath_ParticleSystem
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab10cb1831336c843b9e4872906ee9ea, type: 3}
+--- !u!4 &493004150682851615 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3645337143003560107, guid: ab10cb1831336c843b9e4872906ee9ea, type: 3}
+  m_PrefabInstance: {fileID: 3765385840838910388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3941089513514987220 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 211887370254864224, guid: ab10cb1831336c843b9e4872906ee9ea, type: 3}
+  m_PrefabInstance: {fileID: 3765385840838910388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5321412745444371595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -258,7 +325,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: c0e8ec4be6a4d554881a5c8bb6d0c0cf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 493004150682851615}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c0e8ec4be6a4d554881a5c8bb6d0c0cf, type: 3}
       insertIndex: -1
@@ -322,6 +392,7 @@ MonoBehaviour:
   hp: 3
   cam: {fileID: 0}
   roomBounds: {fileID: 0}
+  fireVFX: {fileID: 3941089513514987220}
 --- !u!136 &6180309610546371556
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -345,3 +416,8 @@ CapsuleCollider:
   m_Height: 2.2134573
   m_Direction: 1
   m_Center: {x: 0.0010385754, y: 0.95473737, z: -0.038101804}
+--- !u!4 &5644081050554452832 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c0e8ec4be6a4d554881a5c8bb6d0c0cf, type: 3}
+  m_PrefabInstance: {fileID: 5321412745444371595}
+  m_PrefabAsset: {fileID: 0}

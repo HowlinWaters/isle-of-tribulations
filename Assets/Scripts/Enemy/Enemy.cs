@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Enemy : MonoBehaviour, IHittable
 {
@@ -23,6 +24,9 @@ public class Enemy : MonoBehaviour, IHittable
     
     [Header("Boundaries")]
     [SerializeField] protected BoxCollider roomBounds;
+    
+    [Header("VFX")]
+    [SerializeField] protected ParticleSystem fireVFX;
 
     protected Animator animator;
     protected float invincible = 0;
@@ -41,6 +45,7 @@ public class Enemy : MonoBehaviour, IHittable
         renderer = activeChar.GetComponentInChildren<Renderer>();
         originalColor = renderer.material.color;
         canMove = true;
+        fireVFX = activeChar.GetComponentInChildren<ParticleSystem>();
     }
 
     public virtual void TakeDamage(int hpLost, Vector3 direction) => TakeDamage(hpLost);

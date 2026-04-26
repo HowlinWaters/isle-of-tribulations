@@ -107,7 +107,11 @@ public class Skeleton : Enemy
     {
         animator.SetTrigger(DeathHash);
         animator.SetFloat(SpeedHash, 0);
+        fireVFX.transform.SetParent(null);
+        fireVFX.Simulate(1f, true, true);
+        fireVFX.Play();
         Destroy(activeChar);
+        Destroy(fireVFX.gameObject, 2f);
     }
     
     public override void TakeDamage(int hpLost, Vector3 direction)
