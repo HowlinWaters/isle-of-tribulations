@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     private readonly float invincibleCD = 3f;
     private float footstepTimer = 0f;
     private readonly float footstepInterval = 0.3f;
+    private bool isDead = false;
 
     void Start()
     {
@@ -181,9 +182,28 @@ public class Player : MonoBehaviour
     
     public void TakeDamage(int hpLost)
     {
-        if (invincible > 0) return;
+        if (invincible > 0 || isDead) return;
+
         hp -= hpLost;
+
+        if (hp <= 0)
+        {
+            hp = 0;
+            isDead = true;
+
+            Debug.Log("Player died");
+
+        
+            FindObjectOfType<GameUIManager>().GameOver();
+
+        
+            canMove = false;
+
+            return;
+    }
+
         Debug.Log($"Ouch! You have {hp} hits remaining!");
+
         invincible = invincibleCD;
         StartCoroutine(BlinkCoroutine(invincible));
     }

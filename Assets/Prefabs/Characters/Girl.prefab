@@ -1136,6 +1136,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
       insertIndex: -1
       addedObject: {fileID: -6059891882490581095}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4045883453237437402}
   m_SourcePrefab: {fileID: 100100000, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
 --- !u!1 &170293045857996214 stripped
 GameObject:
@@ -1208,6 +1211,7 @@ MonoBehaviour:
   gravityValue: -20
   hp: 5
   startingPosition: {x: 2.559774, y: 1.723569, z: -11.34251}
+  HPText: {fileID: 0}
   isAttacking: 0
   audioSource: {fileID: 5609265712756449860}
   cameraTransform: {fileID: 0}
@@ -1230,6 +1234,7 @@ MonoBehaviour:
   hittableLayer:
     serializedVersion: 2
     m_Bits: 264
+  hitVFX: {fileID: 0}
   audioSource: {fileID: 5609265712756449860}
   swordClip: {fileID: 0}
   hammerClip: {fileID: 8300000, guid: 263d1162af4b7d842858c935b0180609, type: 3}
@@ -1564,6 +1569,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4045883453237437402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170293045857996214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1b0a463d85a3c24c820fca5092580a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &654939717059843852 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ffd87c9366ce7374ab648b00958366fa, type: 3}
