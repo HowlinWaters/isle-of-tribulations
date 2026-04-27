@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
     private readonly float footstepInterval = 0.3f;
     private bool isDead = false;
 
+    // Initialize necessary components
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -66,17 +67,21 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        // Invincibility cooldown by time
         if (invincible > 0) invincible -= Time.deltaTime;
 
         groundedPlayer = controller.isGrounded;
 
+        // Gravity applied
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = -2f;
         }
         
+        // Movement
         if (canMove) Move();
 
+        // Attack
         if (Input.GetKeyDown(KeyCode.Return) && canMove && !isAttacking)
         {
             Attack(); 
@@ -90,9 +95,11 @@ public class Player : MonoBehaviour
     {
         if (!canMove) return;
 
+        // Captures movement with key input
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical"); 
 
+        // Player's input is preserved as camera rotates
         Vector3 camForward = cameraTransform.forward;
         Vector3 camRight = cameraTransform.right;
 
@@ -102,9 +109,12 @@ public class Player : MonoBehaviour
         camForward.Normalize();
         camRight.Normalize();
 
+        // Movement directions
+        // Diagonal direction must have its speed clamped
         Vector3 moveDirection = camForward * vertical + camRight * horizontal;
         moveDirection = Vector3.ClampMagnitude(moveDirection, 1f);
 
+        // Speed to affect movement
         Vector3 move = moveDirection * speed;
         playerVelocity.y += gravityValue * Time.deltaTime;
 
@@ -145,6 +155,7 @@ public class Player : MonoBehaviour
         Debug.Log("Let's go!");
     }
 
+    // Attack animation is played
     void Attack()
     {
         LockMovement();
@@ -159,6 +170,7 @@ public class Player : MonoBehaviour
         UnlockMovement();
     }
 
+    // Play footsteps on every movement
     internal void PlayFootsteps(Vector3 moveDirection)
     {
         bool isRunning = moveDirection != Vector3.zero && groundedPlayer;
@@ -168,6 +180,8 @@ public class Player : MonoBehaviour
             footstepTimer -= Time.deltaTime;
             if (footstepTimer <= 0f)
             {
+                // Variations of pitch for realistic footsteps
+                // Footstep plays in intervals
                 audioSource.pitch = Random.Range(0.9f, 1.1f);
                 audioSource.Play();
                 footstepTimer = footstepInterval;
@@ -182,10 +196,12 @@ public class Player : MonoBehaviour
     
     public void TakeDamage(int hpLost)
     {
+        // Invincibility or death prevent this function
         if (invincible > 0 || isDead) return;
 
         hp -= hpLost;
 
+        // Game Over
         if (hp <= 0)
         {
             hp = 0;
@@ -212,7 +228,7 @@ public class Player : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < duration)
         {
-            renderer.enabled = !renderer.enabled;
+            renderer.enabled = !renderer.enabled; // Player character flashes from taking damage
             elapsed += Time.deltaTime;
             yield return null;
         }
@@ -220,6 +236,7 @@ public class Player : MonoBehaviour
         renderer.enabled = true;
     }
 
+    // Apply knockback to player (unused)
     public void ApplyKnockback(Vector3 direction, float force, float duration)
     {
         Debug.Log("EEEER!!! (Knockback applied)");
@@ -239,11 +256,13 @@ public class Player : MonoBehaviour
         UnlockMovement();
     }
     
+    // Other classes should call this function for HP increase
     public void GainHP(int amount)
     {
         hp += amount;
     }
     
+    // Set HP counter on HUD
     private void SetHPText()
     {
         HPText.text = $"HP x{hp}";
@@ -251,6 +270,7 @@ public class Player : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        // Player unlocks gate with the right key
         if (hit.gameObject.CompareTag("Gate"))
         {
             UnlockGate gate = hit.gameObject.GetComponent<UnlockGate>();

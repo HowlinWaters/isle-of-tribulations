@@ -20,6 +20,7 @@ public class Skeleton : Enemy
 
 
     // Start is called before the first frame update
+    // Initialize necessary components + Enemy components
     protected override void Start()
     {
         base.Start();
@@ -59,7 +60,7 @@ public class Skeleton : Enemy
     void Move()
     {
         if (!canMove) return;
-        if (directionTimer <= 0f) PickNewDirection();
+        if (directionTimer <= 0f) PickNewDirection(); // Directions are randomized
         directionTimer -= Time.deltaTime;
 
         Vector3 nextPosition = transform.position + speed * Time.deltaTime * currentDirection.normalized;
@@ -76,6 +77,7 @@ public class Skeleton : Enemy
         controller.Move(clampedPosition - transform.position);
         animator.SetFloat(SpeedHash, speed);
 
+        // Skeleton faces direction it last moved in
         if (currentDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(currentDirection, Vector3.up);
@@ -85,6 +87,7 @@ public class Skeleton : Enemy
 
     void OnTriggerEnter(Collider other)
     {
+        // Detect room bounds
         if (other.gameObject.layer == LayerMask.NameToLayer("RoomBounds"))
         {
             currentDirection = -currentDirection;
@@ -94,6 +97,7 @@ public class Skeleton : Enemy
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        // Damage the player
         if (hit.gameObject.CompareTag("Player") && cooldown <= 0f)
         {
             Player player = hit.gameObject.GetComponent<Player>();
@@ -105,20 +109,25 @@ public class Skeleton : Enemy
         }
     }
     
+    // Death function
     protected override void Die()
     {
         animator.SetTrigger(DeathHash);
         animator.SetFloat(SpeedHash, 0);
+        
+        // Separate light and fire from soon-to-be deleted skeleton
         light.transform.SetParent(null);
         Debug.Log($"Playing {fireVFX.name}");
         fireVFX.transform.SetParent(null);
         fireVFX.Simulate(1f, true, true);
         fireVFX.Play();
+
         Destroy(activeChar);
         Destroy(fireVFX.gameObject, 2f);
         Destroy(light.gameObject, 2f);
         StartCoroutine(FlashLight());
     }
+    // Show light from fire after death
     IEnumerator FlashLight()
     {
         light.enabled = true;
@@ -131,6 +140,7 @@ public class Skeleton : Enemy
         TakeDamage(hpLost);
     }
 
+    // Skeleton takes damage
     public override void TakeDamage(int hpLost)
     {
         hp -= hpLost;

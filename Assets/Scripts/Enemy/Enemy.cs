@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour, IHittable
     protected new Renderer renderer;
     protected Color originalColor;
 
+    // All enemy types initialize these components
     protected virtual void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -51,9 +52,12 @@ public class Enemy : MonoBehaviour, IHittable
         light.enabled = false;
     }
 
+    // Helper function called
     public virtual void TakeDamage(int hpLost, Vector3 direction) => TakeDamage(hpLost);
+    
     public virtual void TakeDamage(int hpLost)
     {
+        // No damage taken if invincible
         if (invincible > 0) return;
         hp -= hpLost;
         invincible = invincibleCD;
@@ -61,6 +65,7 @@ public class Enemy : MonoBehaviour, IHittable
         else Debug.Log($"{gameObject.name} has {hp} hits left!");
     }
 
+    // Enemy receives knockback
     public void ApplyKnockback(Vector3 direction, float force, float duration)
     {
         StartCoroutine(KnockbackCoroutine(direction, force, duration));
@@ -83,7 +88,7 @@ public class Enemy : MonoBehaviour, IHittable
                 Mathf.Clamp(nextPosition.z, roomBounds.bounds.min.z + padding, roomBounds.bounds.max.z - padding)
             );
 
-            controller.Move(clampedPosition - transform.position);
+            controller.Move(clampedPosition - transform.position); // Knockback doesn't go out of room bounds
             elapsed += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
