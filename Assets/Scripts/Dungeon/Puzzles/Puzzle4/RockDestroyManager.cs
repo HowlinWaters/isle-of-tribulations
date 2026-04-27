@@ -12,17 +12,20 @@ public class RockDestroyManager : MonoBehaviour
 
     private bool isPushed = false;
     private int remainingBlocks;
+    private Renderer buttonRenderer;
 
     void Start()
     {
         remainingBlocks = FindObjectsOfType<Rock>().Length;
         audioSource = GetComponent<AudioSource>();
         Debug.Log("Total ice blocks: " + remainingBlocks);
+        buttonRenderer = button.GetComponent<Renderer>();
     }
     
     public void PushButton()
     {
         audioSource.PlayOneShot(buttonPress);
+        buttonRenderer.material.color = Color.green * 4f;
         isPushed = true;
         if (isPushed)
         {

@@ -1206,7 +1206,7 @@ MonoBehaviour:
   speed: 3
   rotationSpeed: 720
   gravityValue: -20
-  hp: 3
+  hp: 5
   startingPosition: {x: 2.559774, y: 1.723569, z: -11.34251}
   HPText: {fileID: 0}
   isAttacking: 0
