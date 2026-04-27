@@ -17,7 +17,7 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         audioSource = GetComponent<AudioSource>();
-        audioSource.volume = 0.2f;
+        audioSource.volume = 0.1f;
     }
 
     public void PlaySound(AudioClip clip)

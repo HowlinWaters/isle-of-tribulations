@@ -66,12 +66,12 @@ public class GameUIManager : MonoBehaviour
     public void MainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenuScene");
     }
 
     public void QuitGame()
     {
         Debug.Log("Quit Game");
-        Application.Quit();
+        SceneManager.LoadScene("MainMenuScene");
     }
 }

@@ -20,12 +20,22 @@ public class HeartSpecialBehavior : HeartBehavior
         if (other.TryGetComponent<Player>(out var player))
         {
             player.GainHP(1);
-            Destroy(gameObject);
+            
+            float clipLength = heartSFX.length;
+            GameObject temp = new GameObject("HeartGain");
+            AudioSource tempAudio = temp.AddComponent<AudioSource>();
+            tempAudio.PlayOneShot(heartSFX);
+
+            Destroy(temp, clipLength);
             
             // GameStatus status = FindObjectOfType<GameStatus>();
             GameUIManager ui = FindObjectOfType<GameUIManager>();
             Debug.Log("You win! Thank you for playing!");
-            ui.GameWin();
+            if (ui != null)
+            {
+                ui.GameWin();
+            }
+            Destroy(gameObject);
         }
     }
 }

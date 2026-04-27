@@ -25,7 +25,7 @@ public class UnlockGate : MonoBehaviour
             tempAudioObject.transform.position = transform.position;
             AudioSource tempAudio = tempAudioObject.AddComponent<AudioSource>();
             tempAudio.clip = audioSource.clip;
-            tempAudio.volume = 0.5f;
+            tempAudio.volume = 0.1f;
             tempAudio.Play();
             Destroy(tempAudioObject, audioSource.clip.length);
 
