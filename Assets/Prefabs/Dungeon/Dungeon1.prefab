@@ -12271,7 +12271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4820400864829321895, guid: fc0c52a51c2751141acd6b306666432f, type: 3}
       propertyPath: hp
-      value: 999
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4820400864829321895, guid: fc0c52a51c2751141acd6b306666432f, type: 3}
       propertyPath: HPText

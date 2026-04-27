@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour, IHittable
 
     protected Animator animator;
     protected float invincible = 0;
-    protected readonly float invincibleCD = 1f;
+    protected readonly float invincibleCD = 0.5f;
     protected Vector3 currentDirection;
     protected float directionTimer = 0f;
     protected float directionInterval;
