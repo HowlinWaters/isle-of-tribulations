@@ -44,17 +44,20 @@ public class Player : MonoBehaviour
     private readonly float footstepInterval = 0.3f;
     private bool isDead = false;
 
+    
+    void Awake()
+    {
+        controller = GetComponent<CharacterController>();
+        controller.enabled = false;
+        transform.position = startingPosition;
+        controller.enabled = true;
+    }
+
     // Initialize necessary components
     void Start()
     {
-        controller = GetComponent<CharacterController>();
         animator = activeChar.GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        activeChar.transform.position = new Vector3(
-            startingPosition.x,
-            startingPosition.y,
-            startingPosition.z
-        );
         renderer = activeChar.GetComponentInChildren<SkinnedMeshRenderer>();
 
         if (cameraTransform == null && Camera.main != null)
