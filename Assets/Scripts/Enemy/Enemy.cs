@@ -28,6 +28,11 @@ public class Enemy : MonoBehaviour, IHittable
     [Header("VFX")]
     [SerializeField] protected ParticleSystem fireVFX;
     [SerializeField] protected new Light light;
+    
+    [Header("Audio")]
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected AudioClip swordHitClip;
+    [SerializeField] protected AudioClip deathClip;
 
     protected Animator animator;
     protected float invincible = 0;
@@ -36,7 +41,9 @@ public class Enemy : MonoBehaviour, IHittable
     protected float directionTimer = 0f;
     protected float directionInterval;
     protected bool canMove;
+    protected bool isDamaged = false;
     protected new Renderer renderer;
+    protected Material mat;
     protected Color originalColor;
 
     // All enemy types initialize these components
@@ -44,7 +51,9 @@ public class Enemy : MonoBehaviour, IHittable
     {
         controller = GetComponent<CharacterController>();
         animator = activeChar.GetComponent<Animator>();
+        audioSource = activeChar.GetComponent<AudioSource>();
         renderer = activeChar.GetComponentInChildren<Renderer>();
+        mat = renderer.material;
         light = activeChar.GetComponentInChildren<Light>();
         fireVFX = activeChar.GetComponentInChildren<ParticleSystem>();
         originalColor = renderer.material.color;

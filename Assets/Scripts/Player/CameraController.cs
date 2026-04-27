@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Pause))]
+[RequireComponent(typeof(GameStatus))]
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float rotateStep = 90f;
     [SerializeField] private float rotateSpeed = 5f;
 
-    private Pause status;
+    private GameStatus status;
     private bool isTransitioning = false;
 
     private float currentYaw = 0f;
@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
     {
         BoxCollider startCollider = startRoom.GetComponent<BoxCollider>();
         offset = transform.position - startCollider.bounds.center;
-        status = GetComponent<Pause>();
+        status = GetComponent<GameStatus>();
 
         currentRoomCenter = startCollider.bounds.center;
         initialRotation = transform.rotation;

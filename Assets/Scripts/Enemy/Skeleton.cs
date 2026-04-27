@@ -16,8 +16,6 @@ public class Skeleton : Enemy
     private Plane[] planes;
     private float cooldown;
     private readonly float cooldownDuration = 2f;
-    private bool isDamaged;
-
 
     // Start is called before the first frame update
     // Initialize necessary components + Enemy components
@@ -115,16 +113,20 @@ public class Skeleton : Enemy
         animator.SetTrigger(DeathHash);
         animator.SetFloat(SpeedHash, 0);
         
-        // Separate light and fire from soon-to-be deleted skeleton
+        // Separate light, fire, and audio source from soon-to-be deleted skeleton
         light.transform.SetParent(null);
         Debug.Log($"Playing {fireVFX.name}");
         fireVFX.transform.SetParent(null);
         fireVFX.Simulate(1f, true, true);
         fireVFX.Play();
+        GameObject temp = new GameObject("FireDeath");
+        AudioSource tempAudio = temp.AddComponent<AudioSource>();
+        tempAudio.PlayOneShot(deathClip);
 
         Destroy(activeChar);
         Destroy(fireVFX.gameObject, 2f);
         Destroy(light.gameObject, 2f);
+        Destroy(tempAudio.gameObject, deathClip.length);
         StartCoroutine(FlashLight());
     }
     // Show light from fire after death
@@ -143,11 +145,26 @@ public class Skeleton : Enemy
     // Skeleton takes damage
     public override void TakeDamage(int hpLost)
     {
-        hp -= hpLost;
         isDamaged = true;
-        if (hp <= 0) Debug.Log($"{gameObject.name} is dead!");
-        else Debug.Log($"{gameObject.name} has {hp} hits left!");
-        invincible = invincibleCD;
-        isDamaged = false;
+        base.TakeDamage(hpLost);
+        audioSource.PlayOneShot(swordHitClip);
+        StartCoroutine(BlinkRed(invincible));
+    }
+    IEnumerator BlinkRed(float duration)
+    {
+        float elapsed = 0f;
+        float blinkInterval = 0.1f;
+        while (elapsed < duration)
+        {
+            mat.color = Color.red * 2f;
+            yield return new WaitForSeconds(blinkInterval);
+
+            mat.color = originalColor;
+            yield return new WaitForSeconds(blinkInterval);
+            
+            elapsed += blinkInterval * 2f;
+        }
+        mat.color = originalColor;
+        isDamaged = false;   
     }
 }

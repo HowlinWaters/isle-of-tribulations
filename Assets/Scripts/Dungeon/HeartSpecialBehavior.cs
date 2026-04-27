@@ -1,21 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class HeartBehavior : MonoBehaviour
+public class HeartSpecialBehavior : HeartBehavior
 {
-    [SerializeField] protected GameObject heart;
-    // Start is called before the first frame update
-    
-    protected bool isPickedUp;
-    protected float rotationSpeed;
-
-    // Start is called before the first frame update
-    protected void Start()
-    {
-        rotationSpeed = 45f;
-    } 
-
     // Update is called once per frame
     void Update()
     {
@@ -32,6 +21,12 @@ public class HeartBehavior : MonoBehaviour
         {
             player.GainHP(1);
             Destroy(gameObject);
+            
+            // GameStatus status = FindObjectOfType<GameStatus>();
+            GameUIManager ui = FindObjectOfType<GameUIManager>();
+            Debug.Log("You win! Thank you for playing!");
+            ui.GameWin();
         }
     }
 }
+

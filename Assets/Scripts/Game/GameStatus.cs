@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pause : MonoBehaviour
+public class GameStatus : MonoBehaviour
 {
     public void PauseGame()
     {

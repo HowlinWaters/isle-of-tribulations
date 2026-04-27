@@ -47,6 +47,11 @@ public class Attack : MonoBehaviour
 
         Destroy(vfx, 2f);
     }
+    
+    void PlaySwordClip()
+    {
+        audioSource.PlayOneShot(swordClip);
+    }
 
     // Hit is registered via an event in the slash animation
     void HitRegister()
@@ -88,7 +93,16 @@ public class Attack : MonoBehaviour
             {
                 Debug.Log($"{hit.gameObject.name} hit!");
                 PlayVFX(hitVFX);
+                audioSource.PlayOneShot(hammerClip);
                 Destroy(hit.gameObject);
+            }
+            if (hit.CompareTag("Button"))
+            {
+                RockDestroyManager rdm = FindObjectOfType<RockDestroyManager>();
+                if (rdm != null)
+                {
+                    rdm.PushButton();
+                }
             }
         }
     }
