@@ -76,16 +76,15 @@ public class CameraController : MonoBehaviour
         Vector3 rotatedOffset = rotation * offset;
         Vector3 destination = currentRoomCenter + rotatedOffset;
 
-        Vector3 rawDirection = destination - transform.position;
-        Vector3 direction;
+        Vector3 direction = destination - transform.position;
 
-        if (Mathf.Abs(rawDirection.x) > Mathf.Abs(rawDirection.z))
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.z))
         {
-            direction = rawDirection.x > 0 ? Vector3.right : Vector3.left;
+            _ = direction.x > 0 ? Vector3.right : Vector3.left;
         }
         else
         {
-            direction = rawDirection.z > 0 ? Vector3.forward : Vector3.back;
+            _ = direction.z > 0 ? Vector3.forward : Vector3.back;
         }
 
         while (Vector3.Distance(transform.position, destination) > 0.1f)
@@ -99,19 +98,6 @@ public class CameraController : MonoBehaviour
         }
 
         transform.position = destination;
-
-        Vector3 playerEntry = Vector3.zero;
-
-        if (direction == Vector3.forward)
-            playerEntry = new(player.transform.position.x, player.transform.position.y, roomBounds.min.z + 1f);
-        else if (direction == Vector3.back)
-            playerEntry = new(player.transform.position.x, player.transform.position.y, roomBounds.max.z - 1f);
-        else if (direction == Vector3.right)
-            playerEntry = new(roomBounds.min.x + 1f, player.transform.position.y, player.transform.position.z);
-        else if (direction == Vector3.left)
-            playerEntry = new(roomBounds.max.x - 1f, player.transform.position.y, player.transform.position.z);
-
-        player.transform.position = playerEntry;
 
         status.ResumeGame();
 

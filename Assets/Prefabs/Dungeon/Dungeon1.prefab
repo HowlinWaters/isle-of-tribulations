@@ -3894,9 +3894,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Door3: {fileID: 1761787677573556597}
-  button: {fileID: 0}
-  audioSource: {fileID: 0}
-  buttonPress: {fileID: 0}
+  button: {fileID: 3241748657851271788}
+  audioSource: {fileID: 2064932241087358348}
+  buttonPress: {fileID: 8300000, guid: f1020704266c59948b2b843214ee635b, type: 3}
 --- !u!1 &4769847951848873169
 GameObject:
   m_ObjectHideFlags: 0

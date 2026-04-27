@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         controller.enabled = false;
+        Debug.Log($"Starting position: {startingPosition}");
         transform.position = startingPosition;
         controller.enabled = true;
     }
@@ -56,8 +57,8 @@ public class Player : MonoBehaviour
     // Initialize necessary components
     void Start()
     {
-        animator = activeChar.GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
+        
+        animator = activeChar.GetComponent<Animator>();audioSource = GetComponent<AudioSource>();
         renderer = activeChar.GetComponentInChildren<SkinnedMeshRenderer>();
 
         if (cameraTransform == null && Camera.main != null)
