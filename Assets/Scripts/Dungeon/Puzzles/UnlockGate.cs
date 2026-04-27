@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UnlockGate : MonoBehaviour
 {
-    [SerializeField] private int requiredkey = 1;
+    [SerializeField] private int requiredkey;
     [SerializeField] private AudioSource audioSource;
     
     private AudioClip audioClip;
@@ -25,6 +25,7 @@ public class UnlockGate : MonoBehaviour
             tempAudioObject.transform.position = transform.position;
             AudioSource tempAudio = tempAudioObject.AddComponent<AudioSource>();
             tempAudio.clip = audioSource.clip;
+            tempAudio.volume = 0.5f;
             tempAudio.Play();
             Destroy(tempAudioObject, audioSource.clip.length);
 
