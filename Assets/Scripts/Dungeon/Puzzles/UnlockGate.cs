@@ -7,8 +7,6 @@ public class UnlockGate : MonoBehaviour
     [SerializeField] private int requiredkey;
     [SerializeField] private AudioSource audioSource;
     
-    private AudioClip audioClip;
-
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -20,16 +18,16 @@ public class UnlockGate : MonoBehaviour
             inventory.UseKey(requiredkey);
             Debug.Log("Unlock door");
             
-            // Create a temporary GameObject just for the audio
+            // Create a temporary GameObject just for the audio to play
             GameObject tempAudioObject = new GameObject("GateUnlockAudio");
             tempAudioObject.transform.position = transform.position;
             AudioSource tempAudio = tempAudioObject.AddComponent<AudioSource>();
             tempAudio.clip = audioSource.clip;
-            tempAudio.volume = 0.1f;
+            tempAudio.volume = 0.1f; // Keep the volume around this level. It's very loud.
             tempAudio.Play();
             Destroy(tempAudioObject, audioSource.clip.length);
 
-            gameObject.SetActive(false);
+            gameObject.SetActive(false); // Locked gate disappears
         }
         else{
             Debug.Log("Door is locked");

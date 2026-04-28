@@ -6,7 +6,7 @@ public class Room : MonoBehaviour
 {
     public Bounds bounds;
 
-    // Draw room bounds for camera shift
+    // Draw gizmos of room bounds
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;

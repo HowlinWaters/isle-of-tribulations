@@ -18,11 +18,13 @@ public class DoorUpward : MonoBehaviour
     private Vector3 openPosition;
     private bool isOpen = false;
 
+    // Initialize open and close positions of the door
     void Start()
     {
         closedPosition = transform.position;
         openPosition = closedPosition + openOffset;
 
+        // Audio of the portal-shaped figure plays when the door is closed
         if(loopAudio != null){
             loopAudio.Play();
         }
@@ -42,7 +44,7 @@ public class DoorUpward : MonoBehaviour
 
     public void OpenDoor()
     {
-        if(isOpen) return;
+        if(isOpen) return; // Doors cannot open twice
 
         isOpen = true;
 
@@ -53,6 +55,7 @@ public class DoorUpward : MonoBehaviour
             openAudio.Play();
         }
 
+        // Open door VFX replaces that of the closed door
         if(left != null && right != null){
             left.Play();
             right.Play();
@@ -66,10 +69,10 @@ public class DoorUpward : MonoBehaviour
 
     public void CloseDoor()
     {
-        if(!isOpen) return;
+        if(!isOpen) return; // Doors cannot close twice
         isOpen = false;
         if(closeDoorFX != null){
-            closeDoorFX.SetActive(true);
+            closeDoorFX.SetActive(true); // Closed door VFX shows a portal-shaped figure again
         }
 
         if (loopAudio != null && !loopAudio.isPlaying)

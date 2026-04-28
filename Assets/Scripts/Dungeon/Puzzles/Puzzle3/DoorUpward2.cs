@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Same logic as DoorUpward.cs
 public class DoorUpward2 : MonoBehaviour
 {
     [SerializeField] private Vector3 openOffset = new Vector3(0f, 4f, 0f);

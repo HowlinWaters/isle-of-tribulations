@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameUIManager : MonoBehaviour
 {
+    [Header("UI")]
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject gameWinScreen;
 
     private bool isPaused = false;
 
+    // All menus are hidden from sight
     void Start()
     {
         pauseMenu.SetActive(false);
@@ -31,6 +33,7 @@ public class GameUIManager : MonoBehaviour
         }
     }
 
+    // Pause game
     public void PauseGame()
     {
         pauseMenu.SetActive(true);
@@ -38,6 +41,7 @@ public class GameUIManager : MonoBehaviour
         isPaused = true;
     }
 
+    // Continue game
     public void ResumeGame()
     {
         pauseMenu.SetActive(false);
@@ -45,30 +49,35 @@ public class GameUIManager : MonoBehaviour
         isPaused = false;
     }
 
+    // Freeze everything at game over
     public void GameOver()
     {
         gameOverScreen.SetActive(true);
         Time.timeScale = 0f;
     }
 
+    // Freeze everything at win screen
     public void GameWin()
     {
         gameWinScreen.SetActive(true);
         Time.timeScale = 0f;
     }
 
+    // Reload the same scene on restart
     public void RestartGame()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    // Return to main menu
     public void MainMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenuScene");
     }
 
+    // Return to main menu (from pause, win, and loss screens)
     public void QuitGame()
     {
         Debug.Log("Quit Game");

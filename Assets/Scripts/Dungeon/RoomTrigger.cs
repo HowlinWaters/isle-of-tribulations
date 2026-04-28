@@ -10,6 +10,7 @@ public class RoomTrigger : MonoBehaviour
     protected bool canTrigger = true;
 
     // Start is called before the first frame update
+    // Camera and box collider must be initialized
     protected virtual void Start()
     {
        cam = Camera.main.GetComponent<CameraController>(); 
@@ -17,6 +18,11 @@ public class RoomTrigger : MonoBehaviour
        Debug.Log($"Camera controller found: {cam}");
     }
 
+    /*
+     * When player enters a new room, the camera will shift to that new room.
+     * The player cannot trigger a room shift until they leave the room
+     * bounds.
+     */
     protected virtual void OnTriggerEnter(Collider other)
     {
        if (other.CompareTag("Player") && canTrigger)
@@ -27,6 +33,7 @@ public class RoomTrigger : MonoBehaviour
        } 
     }
     
+    // Player can trigger the camera shift again
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))

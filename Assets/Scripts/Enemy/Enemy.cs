@@ -64,6 +64,10 @@ public class Enemy : MonoBehaviour, IHittable
     // Helper function called
     public virtual void TakeDamage(int hpLost, Vector3 direction) => TakeDamage(hpLost);
     
+    /*
+     * Every enemies that take damage must lose a hit point and
+     * go invincible for a fixed period
+     */
     public virtual void TakeDamage(int hpLost)
     {
         // No damage taken if invincible
@@ -83,13 +87,15 @@ public class Enemy : MonoBehaviour, IHittable
     IEnumerator KnockbackCoroutine(Vector3 direction, float force, float duration)
     {
         float elapsed = 0f;
-        LockMovement();
+        LockMovement(); // Stunlocks enemy on knockback
         animator.SetFloat(SpeedHash, 0);
         while (elapsed < duration)
         {
+            // Calculate knockback force
             float currentForce = Mathf.Lerp(force, 0f, elapsed / duration);
             float padding = 1f;
             
+            // Clamp knockback force
             Vector3 nextPosition = transform.position + currentForce * Time.fixedDeltaTime * direction;
             Vector3 clampedPosition = new Vector3(
                 Mathf.Clamp(nextPosition.x, roomBounds.bounds.min.x + padding, roomBounds.bounds.max.x - padding),
@@ -98,7 +104,7 @@ public class Enemy : MonoBehaviour, IHittable
             );
 
             controller.Move(clampedPosition - transform.position); // Knockback doesn't go out of room bounds
-            elapsed += Time.fixedDeltaTime;
+            elapsed += Time.fixedDeltaTime; // Fixed change in time required for physics-like movement
             yield return new WaitForFixedUpdate();
         }
         UnlockMovement();

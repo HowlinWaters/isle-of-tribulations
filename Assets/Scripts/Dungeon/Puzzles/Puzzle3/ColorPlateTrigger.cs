@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class ColorPlateTrigger : MonoBehaviour
 {
-    public string requiredcolor;
-    public bool iscorrect = false;
-    private ColorPlateManager manager;
+    public string requiredColor;
+    public bool isCorrect = false;
+    private ColorPlateManager cpm;
 
     void Start()
     {
-        manager = FindObjectOfType<ColorPlateManager>();
+        // Trigger needs the color plate manager
+        cpm = FindObjectOfType<ColorPlateManager>();
     }
 
+    // OnTriggerEnter and OnTriggerStay both identify the box's color
     private void OnTriggerEnter(Collider other)
     {
         CheckBox(other);
@@ -23,13 +25,14 @@ public class ColorPlateTrigger : MonoBehaviour
         CheckBox(other);
     }
 
+    // ???
     private void OnTriggerExit(Collider other)
     {
         ColorPickup pc = other.GetComponent<ColorPickup>();
 
-        if (pc != null && pc.Color == requiredcolor)
+        if (pc != null && pc.Color == requiredColor)
         {
-            iscorrect = false;
+            isCorrect = false;
         }
     }
 
@@ -37,14 +40,15 @@ public class ColorPlateTrigger : MonoBehaviour
     {
         ColorPickup pc = other.GetComponent<ColorPickup>();
 
-        if (pc != null && pc.Color == requiredcolor)
+        // Box's color matches the color plate - puzzle is solved
+        if (pc != null && pc.Color == requiredColor)
         {
-            iscorrect = true;
-            Debug.Log(gameObject.name + " correct: " + requiredcolor);
+            isCorrect = true;
+            Debug.Log(gameObject.name + " correct: " + requiredColor);
 
-            if (manager != null)
+            if (cpm != null)
             {
-                manager.CheckAll();
+                cpm.CheckAll();
             }
         }
     }

@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class SequenceTile : MonoBehaviour
 {
-    public int tileid;
+    public int tileID;
+    // Tile manager keeps track of the order of tiles pressed
     [SerializeField] private TileManager tm;
 
     public void Pressed()
     {
-        Debug.Log("SequenceTile pressed, tileid = " + tileid);
+        Debug.Log("SequenceTile pressed, tileid = " + tileID);
 
         if (tm != null)
         {
-            tm.TilePressed(tileid);
+            tm.TilePressed(tileID);
         }
         else
         {

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// This class only plays on UI!
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     private AudioSource audioSource;
 
+    // One and only one instance of AudioManager must be made in any scene
     void Awake()
     {
         if (Instance == null)
@@ -19,6 +21,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // Play sounds for UI
     public static void PlaySound(AudioClip clip)
     {
         if (Instance != null)

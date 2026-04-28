@@ -8,10 +8,12 @@ public class Inventory : MonoBehaviour
     private List<int> collectedKeys = new List<int>();
     public TextMeshProUGUI countkeyText;
 
+    // Initialize key counter on the HUD
     void Start(){
        SetKeyText();
     }
 
+    // Add the key to inventory if the player obtains it
     public void AddKey(int keyid){
         if(!collectedKeys.Contains(keyid)){
             collectedKeys.Add(keyid);
@@ -19,6 +21,8 @@ public class Inventory : MonoBehaviour
             SetKeyText();
         }
     }
+    
+    // Check a specific key based on its ID/"hash"
     public bool HashKey(int keyid){
         return collectedKeys.Contains(keyid);
     }
@@ -30,6 +34,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // Update key counter on HUD when needed
     public void SetKeyText(){
         countkeyText.text = "Keys x" + collectedKeys.Count.ToString();
     }

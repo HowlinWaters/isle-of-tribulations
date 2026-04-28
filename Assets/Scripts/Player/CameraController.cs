@@ -23,6 +23,10 @@ public class CameraController : MonoBehaviour
     private Vector3 currentRoomCenter;
     private Quaternion initialRotation;
 
+    /*
+     * Box collider, offset position, current center of the room, starting rotation,
+     * and yaws are initialized.
+    */
     void Start()
     {
         BoxCollider startCollider = startRoom.GetComponent<BoxCollider>();
@@ -38,7 +42,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if (isTransitioning) return;
+        if (isTransitioning) return; // Prevent unintended behavior
 
         // Rotate in steps
         if (Input.GetKeyDown(KeyCode.Q))
@@ -51,7 +55,7 @@ public class CameraController : MonoBehaviour
             targetYaw += rotateStep;
         }
 
-        // Smooth rotation
+        // Smooth rotation using LerpAngle
         currentYaw = Mathf.LerpAngle(currentYaw, targetYaw, rotateSpeed * Time.deltaTime);
         Quaternion rotation = Quaternion.Euler(0f, currentYaw, 0f);
         Vector3 rotatedOffset = rotation * offset;
@@ -68,14 +72,17 @@ public class CameraController : MonoBehaviour
     {
         isTransitioning = true;
 
-        status.PauseGame();
+        status.PauseGame(); // Temporarily stop the action for proper room sliding to occur
 
         currentRoomCenter = roomBounds.center;
 
+        // Rotation is calculated to get the rotated offset, which determines the
+        // overall offset for the next room
         Quaternion rotation = Quaternion.Euler(0f, currentYaw, 0f);
         Vector3 rotatedOffset = rotation * offset;
         Vector3 destination = currentRoomCenter + rotatedOffset;
 
+        // Calculate the direction to where the camera will shift
         Vector3 direction = destination - transform.position;
 
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.z))
@@ -87,6 +94,7 @@ public class CameraController : MonoBehaviour
             _ = direction.z > 0 ? Vector3.forward : Vector3.back;
         }
 
+        // Camera shifts to the next room
         while (Vector3.Distance(transform.position, destination) > 0.1f)
         {
             transform.position = Vector3.Lerp(
@@ -97,6 +105,7 @@ public class CameraController : MonoBehaviour
             yield return null;
         }
 
+        // Next room becomes the current room
         transform.position = destination;
 
         status.ResumeGame();

@@ -124,10 +124,11 @@ public class Player : MonoBehaviour
         Vector3 moveDirection = camForward * vertical + camRight * horizontal;
         moveDirection = Vector3.ClampMagnitude(moveDirection, 1f);
 
-        // Speed to affect movement
+        // Speed to make movement
         Vector3 move = moveDirection * speed;
         playerVelocity.y += gravityValue * Time.deltaTime;
 
+        // Player character moves around
         Vector3 finalMove = move;
         finalMove.y = playerVelocity.y;
         controller.Move(finalMove * Time.deltaTime);
@@ -220,18 +221,12 @@ public class Player : MonoBehaviour
             isDead = true;
 
             Debug.Log("Player died");
-
-        
             FindObjectOfType<GameUIManager>().GameOver();
-
-        
             canMove = false;
-
             return;
     }
 
         Debug.Log($"Ouch! You have {hp} hits remaining!");
-        Debug.Log($"Playing {hurtSFX.name}");
 
         hurtSFX.Play();
         invincible = invincibleCD;

@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class PlayerPickup : MonoBehaviour
 {
+    // Player's position as they hold the box
     [SerializeField] private Transform holdPoint;
     [SerializeField] private float pickupRange = 2f;
 
+    // The box being held by player
     private GameObject heldObject;
 
     [SerializeField] private AudioSource pickupsound;
 
     void Update()
     {
+        // Pick up functionality
         if (Input.GetKeyDown(KeyCode.Z))
         {
             if (heldObject == null)
@@ -26,10 +29,12 @@ public class PlayerPickup : MonoBehaviour
 
     void TryPickUp()
     {
+        // Pick ups are based on the player's overlap sphere
         Collider[] hits = Physics.OverlapSphere(transform.position, pickupRange);
 
         foreach (Collider hit in hits)
         {
+            // Boxes must be labeled as "Pickup" for them to be carried
             if (hit.CompareTag("Pickup"))
             {
                 heldObject = hit.gameObject;
@@ -43,23 +48,27 @@ public class PlayerPickup : MonoBehaviour
                 }
 
                 heldObject.transform.SetParent(holdPoint);
+                
+                // Stabilize the box as the player holds it
                 heldObject.transform.localPosition = Vector3.zero;
                 heldObject.transform.localRotation = Quaternion.identity;
                 if(pickupsound != null){
                     pickupsound.Play();
                 }
 
-                break;
+                break; // ???
             }
         }
     }
 
     void DropObject()
     {
-        if (heldObject == null) return;
+        if (heldObject == null) return; // Player cannot drop a box twice
 
+        // Player drops the box
         heldObject.transform.SetParent(null);
 
+        // Box gets stabilized
         if (heldObject.TryGetComponent<Rigidbody>(out var rb))
         {
             rb.isKinematic = false;
@@ -71,6 +80,6 @@ public class PlayerPickup : MonoBehaviour
                 pickupsound.Play();
         }
 
-        heldObject = null;
+        heldObject = null; // No box is being carried
     }
 }

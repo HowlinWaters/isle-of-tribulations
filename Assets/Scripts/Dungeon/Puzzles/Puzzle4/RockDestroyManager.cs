@@ -14,6 +14,7 @@ public class RockDestroyManager : MonoBehaviour
     private int remainingBlocks;
     private Renderer buttonRenderer;
 
+    // Track the number of rocks left
     void Start()
     {
         remainingBlocks = FindObjectsOfType<Rock>().Length;
@@ -38,6 +39,7 @@ public class RockDestroyManager : MonoBehaviour
         
     }
 
+    // You thought you had to break rocks to open a door?
     public void BlockDestroyed()
     {
         remainingBlocks--;

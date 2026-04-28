@@ -5,13 +5,14 @@ using UnityEngine;
 public class TileTrigger : MonoBehaviour
 {
     public SequenceTile st;
-    [SerializeField] private AudioSource stepontile;
+    [SerializeField] private AudioSource stepOnTile;
 
     void Start()
     {
         Debug.Log($"{gameObject.name} - st: {st}, collider trigger: {GetComponent<Collider>().isTrigger}");
     }
 
+    // Trigger detects player stepping on a tile
     private void OnTriggerEnter(Collider c)
     {
         Debug.Log($"{gameObject.name} trigger entered by: {c.gameObject.name}, tag: {c.gameObject.tag}");
@@ -21,9 +22,11 @@ public class TileTrigger : MonoBehaviour
 
             if (st != null)
             {
+                // Tile is pressed
                 st.Pressed();
-                if(stepontile != null){
-                    stepontile.Play();
+                if (stepOnTile != null)
+                {
+                    stepOnTile.Play();
                 }
                 Debug.Log("It is pressed");
             }

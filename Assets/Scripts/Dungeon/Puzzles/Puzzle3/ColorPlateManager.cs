@@ -8,11 +8,11 @@ public class ColorPlateManager : MonoBehaviour
 
     public void CheckAll()
     {
-        if(opened) return;
+        if (opened) return;
 
         foreach (var p in plates)
         {
-            if (!p.iscorrect) return;
+            if (!p.isCorrect) return; // Check plates until boxes of matching colors push them down
         }
         opened = true;
         Debug.Log("Color plate puzzle is completed.");

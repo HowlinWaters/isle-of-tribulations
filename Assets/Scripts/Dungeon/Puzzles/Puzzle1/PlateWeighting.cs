@@ -10,20 +10,21 @@ public class PlateWeighting : MonoBehaviour
 
     private List<WeightObject> objonplate = new List<WeightObject>();
     private int curWeight = 0;
-    private bool puzzelsolved = false;
+    private bool puzzleSolved = false;
 
-    public ParticleSystem magicircle;
+    public ParticleSystem magicCircle;
 
     private void Start()
     {
-        if (magicircle != null)
+        if (magicCircle != null)
         {
-            magicircle.Stop();
+            magicCircle.Stop();
         }
     }
 
     private void OnTriggerEnter(Collider c)
     {
+        // Checking weight of an object
         WeightObject wb = c.GetComponent<WeightObject>();
         if(wb != null && !objonplate.Contains(wb)){
             Debug.Log("Something entered plate: " + c.name);
@@ -53,32 +54,44 @@ public class PlateWeighting : MonoBehaviour
             }
         }
         Debug.Log("Current Weight: " + curWeight);
-        if(!puzzelsolved && curWeight == requiredWeight){
-            puzzelsolved = true;
+        
+        // Box weight must be heavy enough to push the pressure plate completely
+        // and open the door
+        if (!puzzleSolved && curWeight == requiredWeight){
+            puzzleSolved = true;
             Debug.Log("Puzzle solved. Door opened");
-            if( magicircle != null && !magicircle.isPlaying){
-                magicircle.Play();
-            }
-            if(trigger != null){
-                trigger.Play();
+
+            if( magicCircle != null && !magicCircle.isPlaying)
+            {
+               magicCircle.Play();
             }
 
-            if(Door != null){
-                Door.OpenDoor();
+            if(trigger != null)
+            {
+               trigger.Play();
+            }
+
+            if(Door != null)
+            {
+               Door.OpenDoor();
             }
         }
-        else if (puzzelsolved && curWeight < requiredWeight)
+        
+        // Pressure plate goes back up, closing the door
+        else if (puzzleSolved && curWeight < requiredWeight)
         {
-            puzzelsolved = false;
-            if(magicircle != null && magicircle.isPlaying){
-                magicircle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            puzzleSolved = false;
+            if (magicCircle != null && magicCircle.isPlaying)
+            {
+                magicCircle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             }
 
             if (Door != null)
             {
                 Door.CloseDoor();
             }
-            if(trigger != null){
+
+            if (trigger != null){
                 trigger.Stop();
             }
         }

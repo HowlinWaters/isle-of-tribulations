@@ -154,6 +154,8 @@ public class Skeleton : Enemy
     {
         float elapsed = 0f;
         float blinkInterval = 0.1f;
+        
+        // Skeleton flashes red to indicate it has taken damage
         while (elapsed < duration)
         {
             mat.color = Color.red * 2f;
