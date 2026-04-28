@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -9,20 +10,20 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null)
+        if (Instance == null)
         {
-            Destroy(gameObject);
-            return;
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            audioSource = GetComponent<AudioSource>();
+            audioSource.volume = 0.1f;
         }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-        audioSource = GetComponent<AudioSource>();
-        audioSource.volume = 0.1f;
     }
 
-    public void PlaySound(AudioClip clip)
+    public static void PlaySound(AudioClip clip)
     {
-        Debug.Log($"Playing: {clip}, Volume: {audioSource.volume}, Muted: {audioSource.mute}");
-        audioSource.PlayOneShot(clip);
+        if (Instance != null)
+        {
+            Instance.audioSource.PlayOneShot(clip);
+        }
     }
 }
