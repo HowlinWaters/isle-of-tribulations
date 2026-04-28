@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   st: {fileID: 4342379022160283507}
-  stepontile: {fileID: 1152095623800194067}
+  stepOnTile: {fileID: 0}
 --- !u!82 &1152095623800194067
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1437,7 +1437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cb480cee6268e4fa4f01ebbb1528c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileid: 4
+  tileID: 4
   tm: {fileID: 859688145919405753}
 --- !u!114 &4089429567737220289
 MonoBehaviour:
@@ -1452,7 +1452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   st: {fileID: 4895639729653409496}
-  stepontile: {fileID: 2231878471071364134}
+  stepOnTile: {fileID: 0}
 --- !u!1 &1677204150759913595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,7 +1773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   st: {fileID: 3085705696146332982}
-  stepontile: {fileID: 7094281352229411022}
+  stepOnTile: {fileID: 0}
 --- !u!82 &7094281352229411022
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2525,7 +2525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cb480cee6268e4fa4f01ebbb1528c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileid: 5
+  tileID: 5
   tm: {fileID: 859688145919405753}
 --- !u!114 &8286806434759137058
 MonoBehaviour:
@@ -2540,7 +2540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   st: {fileID: 8902465866330791277}
-  stepontile: {fileID: 8415171087673293933}
+  stepOnTile: {fileID: 0}
 --- !u!1 &3241748657851271788
 GameObject:
   m_ObjectHideFlags: 0
@@ -2675,7 +2675,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2828,7 +2828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   st: {fileID: 4895639729653409496}
-  stepontile: {fileID: 2231878471071364134}
+  stepOnTile: {fileID: 0}
 --- !u!82 &2231878471071364134
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4017,7 +4017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cb480cee6268e4fa4f01ebbb1528c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileid: 2
+  tileID: 2
   tm: {fileID: 859688145919405753}
 --- !u!114 &1277798183754081962
 MonoBehaviour:
@@ -4032,7 +4032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   st: {fileID: 4342379022160283507}
-  stepontile: {fileID: 8974395922818153769}
+  stepOnTile: {fileID: 0}
 --- !u!1 &5073214949187228693
 GameObject:
   m_ObjectHideFlags: 0
@@ -4282,7 +4282,7 @@ MonoBehaviour:
   requiredWeight: 3
   Door: {fileID: 7832246638911297318}
   trigger: {fileID: 8174484810264061713}
-  magicircle: {fileID: 3152855775880130768}
+  magicCircle: {fileID: 0}
 --- !u!82 &8174484810264061713
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4602,8 +4602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3c5d6b3ef9207429ded7394a4d82fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredcolor: Blue
-  iscorrect: 0
+  requiredColor: Blue
+  isCorrect: 0
 --- !u!1 &5338083325469403635
 GameObject:
   m_ObjectHideFlags: 0
@@ -4722,8 +4722,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3c5d6b3ef9207429ded7394a4d82fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredcolor: Red
-  iscorrect: 0
+  requiredColor: Red
+  isCorrect: 0
 --- !u!1 &5517422546669133797
 GameObject:
   m_ObjectHideFlags: 0
@@ -5066,7 +5066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cb480cee6268e4fa4f01ebbb1528c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileid: 1
+  tileID: 1
   tm: {fileID: 859688145919405753}
 --- !u!114 &7225731738828559005
 MonoBehaviour:
@@ -5081,7 +5081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   st: {fileID: 1497523136185260231}
-  stepontile: {fileID: 8974395922818153769}
+  stepOnTile: {fileID: 0}
 --- !u!1 &5954512940359708927
 GameObject:
   m_ObjectHideFlags: 0
@@ -5395,7 +5395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cb480cee6268e4fa4f01ebbb1528c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileid: 3
+  tileID: 3
   tm: {fileID: 859688145919405753}
 --- !u!114 &4769980489068195470
 MonoBehaviour:
@@ -5410,7 +5410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   st: {fileID: 3085705696146332982}
-  stepontile: {fileID: 7094281352229411022}
+  stepOnTile: {fileID: 0}
 --- !u!1 &6143888739013312171
 GameObject:
   m_ObjectHideFlags: 0
@@ -5479,7 +5479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   st: {fileID: 1497523136185260231}
-  stepontile: {fileID: 8974395922818153769}
+  stepOnTile: {fileID: 0}
 --- !u!82 &8974395922818153769
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7383,7 +7383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   st: {fileID: 8902465866330791277}
-  stepontile: {fileID: 8415171087673293933}
+  stepOnTile: {fileID: 0}
 --- !u!82 &8415171087673293933
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10882,11 +10882,6 @@ MonoBehaviour:
 --- !u!4 &1331606728165032772 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3650638188812647480, guid: a2a060732547fe64581bb0cb3c2bdf1d, type: 3}
-  m_PrefabInstance: {fileID: 2365372031772082044}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &3152855775880130768 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 797784518864179116, guid: a2a060732547fe64581bb0cb3c2bdf1d, type: 3}
   m_PrefabInstance: {fileID: 2365372031772082044}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2576691934526099042
