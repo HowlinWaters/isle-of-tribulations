@@ -3,6 +3,13 @@
 - Best Sword Sounds (Slice-Slash-Crash-Swoosh-etc) - Alice_soundz ([text](https://pixabay.com/sound-effects/film-special-effects-best-sword-sounds-slice-slash-crash-swoosh-etc-224090/))
 - fire magic (5) - Yodguard ([text](https://pixabay.com/sound-effects/film-special-effects-fire-magic-5-378639/))
 - Healing Magic (4) - Yodguard ([text](https://pixabay.com/sound-effects/film-special-effects-healing-magic-4-378668/))
+- Mixkit Free Sound Effects
+  - Coin ([text](https://mixkit.co/free-sound-effects/coin/))
+  - Wind ([text](https://mixkit.co/free-sound-effects/wind/))
+  - Sci-fi ([text](https://mixkit.co/free-sound-effects/sci-fi/))
+  - Doors ([text](https://mixkit.co/free-sound-effects/doors/))
+  - Interface ([text](https://mixkit.co/free-sound-effects/interface/))
+  - Game ([text](https://mixkit.co/free-sound-effects/game/))
 
 # Shader Sources
 - Simple Water Shader URP - IgniteCoders ([text](https://assetstore.unity.com/packages/2d/textures-materials/water/simple-water-shader-urp-191449))
