@@ -291,6 +291,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4864cf8fc1d773542826e1d5f61fac85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &109093598 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8415171087673293933, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+  m_PrefabInstance: {fileID: 1049468867082940714}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &175971888 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2231878471071364134, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+  m_PrefabInstance: {fileID: 1049468867082940714}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &244459864
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,6 +447,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6429884261336097933, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
   m_PrefabInstance: {fileID: 1049468867082940714}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &581731603 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8974395922818153769, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+  m_PrefabInstance: {fileID: 1049468867082940714}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &853197330 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1152095623800194067, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+  m_PrefabInstance: {fileID: 1049468867082940714}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &933304715 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7094281352229411022, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+  m_PrefabInstance: {fileID: 1049468867082940714}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1499190775 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3821620880159381975, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
@@ -580,6 +605,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 93826948}
+    - target: {fileID: 1277798183754081962, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+      propertyPath: stepOnTile
+      value: 
+      objectReference: {fileID: 853197330}
     - target: {fileID: 2232287048702672320, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -596,6 +625,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4089429567737220289, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+      propertyPath: stepOnTile
+      value: 
+      objectReference: {fileID: 175971888}
     - target: {fileID: 4392316221122602213, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
       propertyPath: m_Name
       value: Dungeon1
@@ -612,6 +645,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -11.34251
       objectReference: {fileID: 0}
+    - target: {fileID: 4550452868019946490, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+      propertyPath: stepOnTile
+      value: 
+      objectReference: {fileID: 109093598}
+    - target: {fileID: 4769980489068195470, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+      propertyPath: stepOnTile
+      value: 
+      objectReference: {fileID: 933304715}
     - target: {fileID: 5125584694470693949, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
       propertyPath: cam
       value: 
@@ -676,6 +717,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 93826948}
+    - target: {fileID: 7225731738828559005, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+      propertyPath: stepOnTile
+      value: 
+      objectReference: {fileID: 581731603}
     - target: {fileID: 7502245541425819290, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -748,6 +793,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.AudioSource, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 8286806434759137058, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+      propertyPath: stepOnTile
+      value: 
+      objectReference: {fileID: 109093598}
     - target: {fileID: 8441228698238087550, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
       propertyPath: cam
       value: 

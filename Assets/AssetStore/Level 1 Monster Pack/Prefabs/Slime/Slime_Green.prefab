@@ -855,6 +855,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 4000010692086626}
     m_Modifications:
     - target: {fileID: 891578474824896495, guid: 60feec39728c9b64185cfe136bbf6a78, type: 3}
+      propertyPath: m_Range
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 891578474824896495, guid: 60feec39728c9b64185cfe136bbf6a78, type: 3}
       propertyPath: m_Lightmapping
       value: 2
       objectReference: {fileID: 0}
