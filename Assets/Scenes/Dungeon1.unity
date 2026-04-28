@@ -601,6 +601,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 93826948}
+    - target: {fileID: 651489302965205856, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+      propertyPath: stepOnTile
+      value: 
+      objectReference: {fileID: 175971888}
     - target: {fileID: 1054898956361244672, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
       propertyPath: cam
       value: 
@@ -661,6 +665,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 93826948}
+    - target: {fileID: 5376979030577351418, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+      propertyPath: stepOnTile
+      value: 
+      objectReference: {fileID: 853197330}
     - target: {fileID: 5441571857723722105, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
       propertyPath: cam
       value: 
@@ -717,10 +725,18 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 93826948}
+    - target: {fileID: 7219979417979079376, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+      propertyPath: stepOnTile
+      value: 
+      objectReference: {fileID: 581731603}
     - target: {fileID: 7225731738828559005, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
       propertyPath: stepOnTile
       value: 
       objectReference: {fileID: 581731603}
+    - target: {fileID: 7460264935751724704, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
+      propertyPath: stepOnTile
+      value: 
+      objectReference: {fileID: 933304715}
     - target: {fileID: 7502245541425819290, guid: d18d8469c3caa5343ac724c07ad125c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
