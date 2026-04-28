@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource hurtSFX;
+    [SerializeField] private AudioSource deathSFX;
     
     [Header("Camera")]
     [SerializeField] private Transform cameraTransform;
@@ -58,13 +60,17 @@ public class Player : MonoBehaviour
     void Start()
     {
         
-        animator = activeChar.GetComponent<Animator>();audioSource = GetComponent<AudioSource>();
+        animator = activeChar.GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         renderer = activeChar.GetComponentInChildren<SkinnedMeshRenderer>();
 
         if (cameraTransform == null && Camera.main != null)
         {
             cameraTransform = Camera.main.transform;
         }
+        
+        Debug.Log($"Current audio source: {audioSource.name}");
+        Debug.Log($"Sounds - Hurt: {hurtSFX}; Death: {deathSFX}");
         
         SetHPText();
     }
@@ -208,6 +214,8 @@ public class Player : MonoBehaviour
         // Game Over
         if (hp <= 0)
         {
+            Debug.Log($"Playing {deathSFX.name}");
+            deathSFX.Play();
             hp = 0;
             isDead = true;
 
@@ -223,8 +231,11 @@ public class Player : MonoBehaviour
     }
 
         Debug.Log($"Ouch! You have {hp} hits remaining!");
+        Debug.Log($"Playing {hurtSFX.name}");
 
+        hurtSFX.Play();
         invincible = invincibleCD;
+
         StartCoroutine(BlinkCoroutine(invincible));
     }
     IEnumerator BlinkCoroutine(float duration)
