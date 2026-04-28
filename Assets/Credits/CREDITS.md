@@ -11,16 +11,18 @@
   - Interface ([text](https://mixkit.co/free-sound-effects/interface/))
   - Game ([text](https://mixkit.co/free-sound-effects/game/))
 - moonlight sonata (ambient version) - Ludwig van Beethoven / Clavier-Music ([text](https://pixabay.com/music/ambient-moonlight-sonata-ambient-version-461261/))
+- Woman scream - Vidrik (Freesound) ([text](https://pixabay.com/sound-effects/people-woman-scream-71194/))
+- female-hurt-2 - birdOfTheNorth (Freesound) ([text](https://pixabay.com/sound-effects/people-female-hurt-2-94301/))
 
 # Shader Sources
 - Simple Water Shader URP - IgniteCoders ([text](https://assetstore.unity.com/packages/2d/textures-materials/water/simple-water-shader-urp-191449))
+- Free Stylized Fire Shader for Unity URP - VOiD1 Gaming ([text](https://void1gaming.itch.io/free-stylized-fire-shader-for-unity-urp))
 
 # Model & Animation Sources
 - Jackie - Mixamo ([text](https://www.mixamo.com/#/?page=2&type=Character))
 - Stylized Free Skeleton - ThunderForgeStudio ([text](https://assetstore.unity.com/packages/3d/characters/creatures/stylized-free-skeleton-298650))
 - HQ Rocks Pack - Next Level 3D ([text](https://assetstore.unity.com/packages/3d/props/exterior/hq-rocks-pack-66895#content))
 - Level 1 Monster Pack - PI Entertainment Limited ([text](https://assetstore.unity.com/packages/3d/characters/creatures/level-1-monster-pack-77703))
-- Free Stylized Fire Shader for Unity URP - VOiD1 Gaming ([text](https://void1gaming.itch.io/free-stylized-fire-shader-for-unity-urp))
 
 # VFX Sources
 - Free Game VFX Collection (URP) - EricWang ([text](https://assetstore.unity.com/packages/vfx/particles/free-game-vfx-collection-urp-345212))
